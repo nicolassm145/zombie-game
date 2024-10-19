@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: cf0b6d838e9e922449434cf657ca8194
+  productGUID: 6b04571174381f546a6e32c3e2190822
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -84,6 +84,7 @@ PlayerSettings:
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
   Force IOS Speakers When Recording: 0
+  audioSpatialExperience: 0
   deferSystemGesturesMode: 0
   hideHomeButton: 0
   submitAnalytics: 1
@@ -671,10 +672,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: f176ccdc-56cf-4c3a-a1d0-ab58bb750095
+  cloudProjectId: 7a66a0d9-dca9-480c-9343-e6342f418352
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: zombie-game 2024-10-18_19-53-19
+  projectName: zombie-game 2024-10-19_19-32-17
   organizationId: d2022014472
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
