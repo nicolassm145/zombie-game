@@ -416,7 +416,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -5942,6 +5942,32 @@ Transform:
   - {fileID: 1467048958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1797491015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8532039476515001842, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
+  m_PrefabInstance: {fileID: 6968178575203631579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1797491022
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797491015}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fec2a07f611caa4bba2376d756f5fd6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6968178575203631579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5990,6 +6016,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 849222001630001319, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1408311751, guid: 9028ceaef8624844b81f89ec0cce54a1, type: 3}
+    - target: {fileID: 849222001630001319, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580559558399898530, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
+      propertyPath: movespeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8532039476515001842, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5997,7 +6035,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8532039476515001842, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1797491022}
   m_SourcePrefab: {fileID: 100100000, guid: 4695c453f4fb59748ba58b2eb7ae1e75, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

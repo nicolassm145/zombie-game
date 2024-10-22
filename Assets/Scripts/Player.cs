@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
         _playerAnimator = GetComponent<Animator>();
     }
 
-
     void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
@@ -25,19 +24,14 @@ public class Player : MonoBehaviour
     void MovePlayer()
     {
         _playerRb.velocity = _movement * movespeed;
-        
-        bool isRunning = Mathf.Abs(_playerRb.velocity.x) > Mathf.Epsilon;
-        _playerAnimator.SetBool("isRunning", isRunning);
-        if (isRunning)
-        {
-            Flip();
-        }
-    }
 
-    void Flip()
-    {
-        transform.localScale = new Vector3(Mathf.Sign(_playerRb.velocity.x),1,1);
+        bool isWalking = Mathf.Abs(_playerRb.velocity.x) > Mathf.Epsilon || Mathf.Abs(_playerRb.velocity.y) > Mathf.Epsilon;
+        _playerAnimator.SetBool("isWalking", isWalking);
+        
+        _playerAnimator.SetFloat("Horizontal", _movement.x);
+        _playerAnimator.SetFloat("Vertical", _movement.y);
     }
+    
     void Update()
     {
         MovePlayer();
