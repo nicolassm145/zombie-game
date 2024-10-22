@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PlayerIdle
-  m_Speed: 0.17
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4891868198594074181}
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 135e7fbd32f362a43bbb7a1281e60388, type: 2}
+  m_Motion: {fileID: 7400000, guid: 51d8a52b4fae8464895b554bc4fe31b2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -100,7 +100,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Movements
-  m_Speed: 1
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7019749989309140250}
@@ -153,7 +153,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: c452ab27215151b4894819b8d4fcc126, type: 2}
+    m_Motion: {fileID: 7400000, guid: 94000294fe5337a42992a70852b78835, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -161,7 +161,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ca3a6b7d8606aac4da3ab1abfdaa50f8, type: 2}
+    m_Motion: {fileID: 7400000, guid: 5d3907bb19ae9354b951e7b9314bbe78, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -169,7 +169,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 7bde24ce0796bb44e9d6ec7587933838, type: 2}
+    m_Motion: {fileID: 7400000, guid: cb1351c77b2707646b80a79a57330195, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -177,7 +177,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 38ee02bb366f9ad49a9bf359c2a81a50, type: 2}
+    m_Motion: {fileID: 7400000, guid: 20791db725db2ba4ab694b860601630f, type: 2}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
