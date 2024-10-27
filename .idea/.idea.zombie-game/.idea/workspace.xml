@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Ground.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Ground.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_0.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_0.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_3.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Ground_3.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Background.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,6 +94,7 @@
       <workItem from="1729616465795" duration="6266000" />
       <workItem from="1729633072620" duration="19000" />
       <workItem from="1729633126301" duration="73000" />
+      <workItem from="1729908131950" duration="660000" />
     </task>
     <servers />
   </component>
