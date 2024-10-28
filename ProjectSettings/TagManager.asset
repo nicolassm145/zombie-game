@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Ground
   - Foreground
+  - ForegroundCollision
   - Player
-  - 
   - 
   - 
   - 
@@ -44,9 +44,12 @@ TagManager:
   - name: Ground
     uniqueID: 1670056801
     locked: 0
-  - name: Foreground
-    uniqueID: 2430939519
-    locked: 0
   - name: Player
     uniqueID: 2393958685
+    locked: 0
+  - name: ForegroundCollision
+    uniqueID: 2162515085
+    locked: 0
+  - name: Foreground
+    uniqueID: 2430939519
     locked: 0

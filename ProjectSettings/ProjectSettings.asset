@@ -786,7 +786,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: zombie-game
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -794,7 +794,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: zombie-game
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: zombie-game
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
