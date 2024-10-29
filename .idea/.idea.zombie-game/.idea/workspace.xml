@@ -5,54 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tree.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Tree.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnJogar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnJogar.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnSair.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnSair.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Foreground/car.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Foreground/car.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tree.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +41,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MoneyUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -160,6 +124,7 @@
       <workItem from="1730049442542" duration="689000" />
       <workItem from="1730078169659" duration="4789000" />
       <workItem from="1730165478600" duration="514000" />
+      <workItem from="1730175327552" duration="1894000" />
     </task>
     <servers />
   </component>
