@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     Vector2 _movement;
     TextMeshProUGUI _moneyText;
     
-    public bool _hasWeapon { get; set; } = false;
+    public bool HasWeapon { get; set; } = false;
     
     [SerializeField]
     LayerMask solidObjectsLayer;
@@ -56,14 +56,11 @@ public class Player : MonoBehaviour
 
     public bool SpendMoney(int amount)
     {
-        if (money >= amount)
-        {
-            money -= amount;
-            UpdateMoneyUI();
-            return true;
-        }
-
-        return false;
+        if (money < amount) return false;
+        
+        money -= amount;
+        UpdateMoneyUI();
+        return true;
     }
 
     void UpdateMoneyUI()

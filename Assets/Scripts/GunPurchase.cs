@@ -50,11 +50,11 @@ public class GunPurchase : MonoBehaviour
     {
         bool purchased = _player.SpendMoney(gunCost);
 
-        if (purchased && !_player._hasWeapon)
+        if (purchased && !_player.HasWeapon)
         {
             GameObject newGun = Instantiate(gunPrefab, _player.transform.position, Quaternion.identity);
             newGun.transform.SetParent(_player.transform); // Posiciona a arma no jogador
-            _player._hasWeapon = true;
+            _player.HasWeapon = true;
         }
         else
         {
