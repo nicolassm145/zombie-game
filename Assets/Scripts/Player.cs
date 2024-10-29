@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float movespeed;
 
+    [SerializeField]
+    public int money;
+
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();

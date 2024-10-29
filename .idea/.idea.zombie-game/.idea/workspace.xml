@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Foreground/Slot.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Foreground/Slot.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Foreground/car.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Foreground/car.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,7 @@
       <workItem from="1730048820504" duration="384000" />
       <workItem from="1730049442542" duration="689000" />
       <workItem from="1730078169659" duration="4789000" />
-      <workItem from="1730164076465" duration="770000" />
+      <workItem from="1730164076465" duration="1345000" />
     </task>
     <servers />
   </component>
