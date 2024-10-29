@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,9 @@
     &quot;accountId&quot;: &quot;9d34b9e5-45c7-41f6-a1ea-5b8e39e0c9a6&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MoneyUI.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -107,7 +112,7 @@
       <workItem from="1730048820504" duration="384000" />
       <workItem from="1730049442542" duration="689000" />
       <workItem from="1730078169659" duration="4789000" />
-      <workItem from="1730164076465" duration="1345000" />
+      <workItem from="1730164076465" duration="8738000" />
     </task>
     <servers />
   </component>

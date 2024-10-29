@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,9 @@ public class Player : MonoBehaviour
     Animator _playerAnimator;
     Rigidbody2D _playerRb;
     Vector2 _movement;
+    TextMeshProUGUI _moneyText;
+    
+    public bool _hasWeapon { get; set; } = false;
     
     [SerializeField]
     LayerMask solidObjectsLayer;
@@ -14,12 +18,14 @@ public class Player : MonoBehaviour
     float movespeed;
 
     [SerializeField]
-    public int money;
+    int money = 500;
 
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
+        
+        _moneyText = GameObject.FindWithTag("MoneyUI").GetComponent<TextMeshProUGUI>();
     }
 
     void OnMove(InputValue value)
@@ -50,6 +56,23 @@ public class Player : MonoBehaviour
     bool IsWalkable(Vector3 targetPosition)
     {
         return Physics2D.OverlapCircle(targetPosition, 0.2f, solidObjectsLayer) is null;
+    }
+
+    public bool SpendMoney(int amount)
+    {
+        if (money >= amount)
+        {
+            money -= amount;
+            UpdateMoneyUI();
+            return true;
+        }
+
+        return false;
+    }
+
+    void UpdateMoneyUI()
+    {
+        _moneyText.text = "Dinheiro: " + money.ToString();
     }
     
     void Update()
