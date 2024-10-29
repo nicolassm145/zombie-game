@@ -4,57 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.zombie-game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/NoFriction.physicsMaterial2D.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MenuPrincipal.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuPrincipalControler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Renderer2D.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Tree.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Tree.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnJogar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnJogar.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnSair.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/BtnSair.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_0.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_1.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_2.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_3.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_4.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_5.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_6.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_7.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/Tree_8.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="3f19f99c-a98c-4974-b71d-abbfc64e2771" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,20 +40,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "press-start",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Unity.exe" />
