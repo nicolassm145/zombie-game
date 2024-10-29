@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MoneyUI
+  - Gun
   layers:
   - Default
   - TransparentFX
@@ -11,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Foreground
+  - ForegroundCollision
+  - Player
+  - BuyableGuns
   - 
   - 
   - 
@@ -40,4 +42,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 1
+  - name: Ground
+    uniqueID: 1670056801
+    locked: 0
+  - name: ForegroundCollision
+    uniqueID: 2162515085
+    locked: 0
+  - name: BuyableGuns
+    uniqueID: 2499948353
+    locked: 0
+  - name: Player
+    uniqueID: 2393958685
+    locked: 0
+  - name: Weapons
+    uniqueID: 3367784153
+    locked: 0
+  - name: Foreground
+    uniqueID: 2430939519
     locked: 0
