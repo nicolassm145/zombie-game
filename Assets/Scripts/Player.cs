@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -74,9 +75,25 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = "Dinheiro: " + money.ToString();
     }
-    
+
+    public GameObject bullet, spawnerBulletPos;
     void Update()
     {
+        
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+
+      
+        Vector2 direction = new Vector2(mousePos.x - spawnerBulletPos.transform.position.x, mousePos.y - spawnerBulletPos.transform.position.y);
+        direction.Normalize();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            GameObject newBullet = Instantiate(bullet, spawnerBulletPos.transform.position, Quaternion.identity);
+            
+            newBullet.transform.up = direction;
+        }
         MovePlayer();
     }
 }
