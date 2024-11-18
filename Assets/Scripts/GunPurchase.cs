@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 
 public class GunPurchase : MonoBehaviour
 {
-    [SerializeField]
-    int gunCost;
+    [SerializeField] int gunCost;
 
     [SerializeField] private GameObject buyWeaponText;
     private TextMeshProUGUI _costText;
@@ -18,7 +17,6 @@ public class GunPurchase : MonoBehaviour
     private bool _isPlayerInRange = false;
     private Player _player;
     
-    // Start is called before the first frame update
     void Start()
     {
         _costText = buyWeaponText.GetComponent<TextMeshProUGUI>();
@@ -61,8 +59,7 @@ public class GunPurchase : MonoBehaviour
             print("Não comproule");
         }
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (!_isPlayerInRange || !Keyboard.current.fKey.wasPressedThisFrame) return;

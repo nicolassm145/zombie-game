@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; // Biblioteca necessária para o NavMesh
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private GameObject player;
-    public GameObject particle;
+    private NavMeshAgent agent; // Componente NavMeshAgent
     private int life;
+    
     void Start()
     {
         life = 30;
         player = GameObject.Find("Player");
+        agent = GetComponent<NavMeshAgent>();
 
+        // Configurações para 2D
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position=Vector2.MoveTowards(transform.position,player.transform.position,Time.deltaTime*2f);
+     
+        agent.SetDestination(player.transform.position);
+       
+
+        
         if (life <= 0)
         {
-            Instantiate(particle, transform.position, Quaternion.identity );
+            Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

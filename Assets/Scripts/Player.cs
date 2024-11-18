@@ -11,16 +11,11 @@ public class Player : MonoBehaviour
     TextMeshProUGUI _moneyText;
     
     public bool HasWeapon { get; set; } = false;
+    [SerializeField] LayerMask solidObjectsLayer;
+    [SerializeField] float movespeed;
+    [SerializeField] int money = 500;
     
-    [SerializeField]
-    LayerMask solidObjectsLayer;
-
-    [SerializeField]
-    float movespeed;
-
-    [SerializeField]
-    int money = 500;
-
+    public GameObject bullet, spawnerBulletPos;
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
@@ -68,8 +63,7 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = "Dinheiro: " + money.ToString();
     }
-
-    public GameObject bullet, spawnerBulletPos;
+        
     void Update()
     {
         
