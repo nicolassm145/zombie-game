@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99cf65f76febc914bbfc19fc2d74da6f
+guid: 2d4780d7859c6ad42b6ea634282bc673
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BigZombie_0
+      name: Zombie_0
       rect:
         serializedVersion: 2
         x: 5
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52e52c9b3c603ca428fa5c6712fe22bc
-      internalID: 1668681593
+      spriteID: 2e1484c38917d604384b52bd935e728e
+      internalID: -988867812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_1
+      name: Zombie_1
       rect:
         serializedVersion: 2
         x: 31
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48526909dc70c514c976de82a9339a1c
-      internalID: -353240577
+      spriteID: 6dae0406496a5c542a4f7f7c1a84c68b
+      internalID: 543345985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_2
+      name: Zombie_2
       rect:
         serializedVersion: 2
         x: 57
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47cd975be64196a479608f87ee4871dc
-      internalID: -1087886593
+      spriteID: 0743b11ef38e24b4a8f1a26bb0b9f1f0
+      internalID: -1851674306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_3
+      name: Zombie_3
       rect:
         serializedVersion: 2
         x: 83
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25a4f265f7c42b24fa07046e9ac0b5df
-      internalID: -2142837809
+      spriteID: 3baa250d2c1d81b46af9c1c3f7d27e32
+      internalID: 580068340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_4
+      name: Zombie_4
       rect:
         serializedVersion: 2
         x: 109
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ee635fb6514b4b4b8761b4e654e0e2f
-      internalID: 200978721
+      spriteID: 25b509731c2328d44b6cb6fdd0672703
+      internalID: -1838932078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_5
+      name: Zombie_5
       rect:
         serializedVersion: 2
         x: 135
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed136a6a886309f49b78b02ea46e82e2
-      internalID: -571938743
+      spriteID: dd16ba4b50d4a6d4cace0c0aee1054ab
+      internalID: 1616438094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_6
+      name: Zombie_6
       rect:
         serializedVersion: 2
         x: 161
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adbee180f872bb445be25e443a1d6b24
-      internalID: 638594815
+      spriteID: a132cfc60eb316449bfc14308c70062f
+      internalID: 1096435551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_7
+      name: Zombie_7
       rect:
         serializedVersion: 2
         x: 187
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb2923c61fe70c447b9129e51f524e65
-      internalID: 591172199
+      spriteID: eea77bcd56ad41d429eada55dd3f490f
+      internalID: -1112562340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigZombie_8
+      name: Zombie_8
       rect:
         serializedVersion: 2
         x: 213
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41a2abedfaecf594cbf88d96a2c3de7b
-      internalID: 1819277021
+      spriteID: a98fbd195ef9de840b67537fc10d1238
+      internalID: 371970339
       vertices: []
       indices: 
       edges: []
@@ -296,15 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BigZombie_0: 1668681593
-      BigZombie_1: -353240577
-      BigZombie_2: -1087886593
-      BigZombie_3: -2142837809
-      BigZombie_4: 200978721
-      BigZombie_5: -571938743
-      BigZombie_6: 638594815
-      BigZombie_7: 591172199
-      BigZombie_8: 1819277021
+      Zombie_0: -988867812
+      Zombie_1: 543345985
+      Zombie_2: -1851674306
+      Zombie_3: 580068340
+      Zombie_4: -1838932078
+      Zombie_5: 1616438094
+      Zombie_6: 1096435551
+      Zombie_7: -1112562340
+      Zombie_8: 371970339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

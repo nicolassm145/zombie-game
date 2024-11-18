@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BigZombie
+  m_Name: Zombie
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1668681593, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
+      value: {fileID: -988867812, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
     - time: 0.083333336
-      value: {fileID: -353240577, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
+      value: {fileID: 543345985, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
     - time: 0.16666667
-      value: {fileID: -1087886593, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
+      value: {fileID: -1851674306, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1668681593, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
-    - {fileID: -353240577, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
-    - {fileID: -1087886593, guid: 99cf65f76febc914bbfc19fc2d74da6f, type: 3}
+    - {fileID: -988867812, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
+    - {fileID: 543345985, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
+    - {fileID: -1851674306, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
