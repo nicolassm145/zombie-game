@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] int life; 
     private NavMeshAgent agent; 
-
     void Start()
     { 
         player = GameObject.Find("Player"); 
@@ -51,11 +50,21 @@ public class Enemy : MonoBehaviour
     
     void OnDestroy()
     {
-        
         GameObject spawner = GameObject.Find("Spawner");
         if (spawner != null)
         {
             spawner.GetComponent<EnemySpawner>().EnemyDestroyed();
         }
+
+        if (player != null)
+        {
+            Debug.Log("Matei");
+            Player playerScript = player.GetComponent<Player>();
+            if (playerScript != null)
+            {
+                playerScript.ZombieKilled();
+            }
+        }
     }
+
 }

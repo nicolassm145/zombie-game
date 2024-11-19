@@ -11,9 +11,12 @@ public class Player : MonoBehaviour
     Vector2 _movement;
     TextMeshProUGUI _moneyText;
     TextMeshProUGUI healthText; 
+    int zombiesKilled = 0;
+    private float timeAlive = 0f;
     
-    [SerializeField] GameObject heartPrefab; // Prefab do ícone de coração
-    [SerializeField] GameObject healthPanel; // Painel onde os corações serão exibidos
+    [SerializeField] GameObject heartPrefab; 
+    [SerializeField] GameObject healthPanel; 
+    
 
     public bool HasWeapon { get; set; } = false;
     
@@ -72,40 +75,40 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Jogador morreu!");
-            SceneManager.LoadScene("MenuPrincipal");
+            PlayerPrefs.SetFloat("TimeAlive", timeAlive);
+            PlayerPrefs.SetInt("ZombiesKilled", zombiesKilled);
+            SceneManager.LoadScene("GameOver");
         }
         else
         {
             StartCoroutine(InvincibilityCoroutine());
         }
     }
+    public void ZombieKilled()
+    {
+        zombiesKilled++;
+    }
     IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true; 
         
         float elapsed = 0f;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+       
         while (elapsed < invincibilityDuration)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled; 
             yield return new WaitForSeconds(0.2f); 
             elapsed += 0.1f;
         }
-        spriteRenderer.enabled = true; 
-
         isInvincible = false; 
     }
 
     void UpdateHealthUI()
     {
-        // Primeiro, limpe o painel de corações
         foreach (Transform child in healthPanel.transform)
         {
             Destroy(child.gameObject);
         }
-
-        // Adicione corações de acordo com a vida atual
+        
         for (int i = 0; i < health; i++)
         {
             Instantiate(heartPrefab, healthPanel.transform);
@@ -129,7 +132,7 @@ public class Player : MonoBehaviour
     public GameObject bullet, spawnerBulletPos;
     void Update()
     {
-        
+        timeAlive += Time.deltaTime;
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
 
