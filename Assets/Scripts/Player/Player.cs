@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject healthPanel; // Painel onde os corações serão exibidos
 
     public bool HasWeapon { get; set; } = false;
+    public Pistol Weapon { get; set; } = null;
+    public GameObject spawnerBulletPos;
     
     [SerializeField] LayerMask solidObjectsLayer;
 
@@ -25,7 +28,8 @@ public class Player : MonoBehaviour
     [SerializeField] int health = 5; 
     [SerializeField] float invincibilityDuration = 2f; 
     private bool isInvincible = false;
-    
+
+    public event Action OnInteractAction;
     
     void Awake()
     {
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour
         
         _moneyText = GameObject.FindWithTag("MoneyUI").GetComponent<TextMeshProUGUI>();
         healthText = GameObject.FindWithTag("LifeUI").GetComponent<TextMeshProUGUI>();
-       UpdateHealthUI();
+        UpdateHealthUI();
     }
 
     void OnMove(InputValue value)
@@ -125,25 +129,21 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = money.ToString();
     }
+    
+    private void OnFire(InputValue value)
+    {
+        if (!HasWeapon) return;
+        
+        Weapon.Fire();
+    }
 
-    public GameObject bullet, spawnerBulletPos;
+    void OnInteract(InputValue value)
+    {
+        OnInteractAction?.Invoke();
+    }
+    
     void Update()
     {
-        
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
-
-      
-        Vector2 direction = new Vector2(mousePos.x - spawnerBulletPos.transform.position.x, mousePos.y - spawnerBulletPos.transform.position.y);
-        direction.Normalize();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-            GameObject newBullet = Instantiate(bullet, spawnerBulletPos.transform.position, Quaternion.identity);
-            
-            newBullet.transform.up = direction;
-        }
         MovePlayer();
     }
 }
