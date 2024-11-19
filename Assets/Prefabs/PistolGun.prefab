@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7564590058458982116}
   - component: {fileID: 449966617431687155}
+  - component: {fileID: 4806188137916590340}
   m_Layer: 0
   m_Name: PistolGun
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -927183143
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4c1df995e3d933499263b32b9ff97aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4806188137916590340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991008100082551068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdaad7375729de40ba9e65737e02252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 184337399719150429, guid: eddc076e9cc18ad44948fec38acfab26, type: 3}
+  spawnerBulletPos: {fileID: 0}

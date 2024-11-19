@@ -34,6 +34,7 @@ public class GunPurchase : MonoBehaviour
             
         _player = other.gameObject.GetComponent<Player>();
         _isPlayerInRange = true;
+        _player.OnInteractAction += BuyWeapon; // Adiciona o método BuyWeapon ao evento de interação
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -41,13 +42,16 @@ public class GunPurchase : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         
         buyWeaponText.SetActive(false);
-            
+        
+        _player.OnInteractAction -= BuyWeapon; // Remove o método BuyWeapon do evento de interação
         _player = null;
         _isPlayerInRange = false;
     }
 
     private void BuyWeapon()
     {
+        if (!_isPlayerInRange) return;
+        
         bool purchased = _player.SpendMoney(gunCost);
 
         if (purchased && !_player.HasWeapon)
@@ -55,18 +59,12 @@ public class GunPurchase : MonoBehaviour
             GameObject newGun = Instantiate(gunPrefab, _player.transform.position, Quaternion.identity);
             newGun.transform.SetParent(_player.transform); // Posiciona a arma no jogador
             _player.HasWeapon = true;
+            _player.Weapon = gunPrefab.GetComponent<Pistol>();
+            _player.Weapon.spawnerBulletPos = _player.spawnerBulletPos;
         }
         else
         {
             print("Não comproule");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!_isPlayerInRange || !Keyboard.current.fKey.wasPressedThisFrame) return;
-        
-        BuyWeapon();
     }
 }
