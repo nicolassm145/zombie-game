@@ -1,7 +1,7 @@
-# Zobware
+# Zombware
 
 ## Descrição Geral
-**Zobware** é um jogo de ação e sobrevivência ambientado nos anos 60. O jogador assume o papel de um fazendeiro solitário que, em uma noite, acorda com sons estranhos e descobre zumbis emergindo em sua fazenda. O objetivo é sobreviver a hordas crescentes de zumbis, utilizando armas, pontos e melhorias para enfrentar as ameaças.
+**Zombware** é um jogo de ação e sobrevivência ambientado nos anos 60. O jogador assume o papel de um fazendeiro solitário que, em uma noite, acorda com sons estranhos e descobre zumbis emergindo em sua fazenda. O objetivo é sobreviver a hordas crescentes de zumbis, utilizando armas, pontos e melhorias para enfrentar as ameaças.
 
 **Versão da Unity:** `2022.3.50f1`
 
