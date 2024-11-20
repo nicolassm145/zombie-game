@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject heartPrefab; 
     [SerializeField] GameObject healthPanel; 
     
-
+    public int Ammo { get; set; } = 0; 
+    [SerializeField] private int maxAmmo = 30;
     public bool HasWeapon { get; set; } = false;
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
@@ -64,7 +65,13 @@ public class Player : MonoBehaviour
         _playerAnimator.SetFloat("Horizontal", _movement.x);
         _playerAnimator.SetFloat("Vertical", _movement.y);
     }
-
+    
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        UpdateMoneyUI();
+    }
+    
     bool IsWalkable(Vector3 targetPosition)
     {
         return Physics2D.OverlapCircle(targetPosition, 0.2f, solidObjectsLayer) is null;
@@ -133,12 +140,42 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = money.ToString();
     }
+    public bool SpendAmmo()
+    {
+        if (Ammo <= 0) return false;
+        Ammo--;
+        UpdateAmmoUI();
+        return true;
+    }
+
+    public void ReloadAmmo()
+    {
+        Ammo = maxAmmo;
+        UpdateAmmoUI();
+    }
+
+    void UpdateAmmoUI()
+    {
+        // Atualize a UI de munição se existir
+        TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
+        if (ammoText != null)
+        {
+            ammoText.text = $"{Ammo}/{maxAmmo}";
+        }
+    }
     
     private void OnFire(InputValue value)
     {
-        if (!HasWeapon) return;
-        
-        Weapon.Fire();
+        if (!HasWeapon || Ammo <= 0) return;
+
+        if (SpendAmmo())
+        {
+            Weapon.Fire();
+        }
+        else
+        {
+            print("Sem munição!");
+        }
     }
 
     void OnInteract(InputValue value)
@@ -149,5 +186,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        timeAlive += Time.deltaTime;
     }
 }

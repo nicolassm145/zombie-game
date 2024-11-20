@@ -9,7 +9,7 @@ public class GunPurchase : MonoBehaviour
 {
     [SerializeField]
     int gunCost;
-
+    [SerializeField] private GameObject gunImage;
     [SerializeField] private GameObject buyWeaponText;
     private TextMeshProUGUI _costText;
 
@@ -54,17 +54,22 @@ public class GunPurchase : MonoBehaviour
         
         bool purchased = _player.SpendMoney(gunCost);
 
-        if (purchased && !_player.HasWeapon)
+        if (purchased)
         {
-            GameObject newGun = Instantiate(gunPrefab, _player.transform.position, Quaternion.identity);
-            newGun.transform.SetParent(_player.transform); // Posiciona a arma no jogador
-            _player.HasWeapon = true;
-            _player.Weapon = gunPrefab.GetComponent<Pistol>();
-            _player.Weapon.spawnerBulletPos = _player.spawnerBulletPos;
+            if (!_player.HasWeapon)
+            {
+                gunImage.SetActive(true);
+                _player.HasWeapon = true;
+                _player.Weapon = gunPrefab.GetComponent<Pistol>();
+                _player.Weapon.spawnerBulletPos = _player.spawnerBulletPos;
+            }
+
+            
+            _player.ReloadAmmo();
         }
         else
         {
-            print("Não comproule");
+            Debug.Log("Dinheiro insuficiente para comprar/recarregar!");
         }
     }
 }

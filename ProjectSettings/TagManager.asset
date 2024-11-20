@@ -8,6 +8,7 @@ TagManager:
   - Gun
   - bullet
   - LifeUI
+  - AmmoUI
   layers:
   - Default
   - TransparentFX

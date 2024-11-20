@@ -58,11 +58,12 @@ public class Enemy : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("Matei");
             Player playerScript = player.GetComponent<Player>();
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
+                int moneyReward = Random.Range(20, 51); 
+                playerScript.AddMoney(moneyReward);
             }
         }
     }
