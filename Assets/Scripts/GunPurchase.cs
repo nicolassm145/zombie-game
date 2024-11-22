@@ -69,7 +69,7 @@ public class GunPurchase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Dinheiro insuficiente para comprar/recarregar!");
+            print("Dinheiro insuficiente para comprar/recarregar!");
         }
     }
 }

@@ -13,11 +13,12 @@ public class Player : MonoBehaviour
     TextMeshProUGUI _moneyText;
     TextMeshProUGUI healthText; 
     int zombiesKilled = 0;
-    private float timeAlive = 0f;
+     float timeAlive = 0f;
     
     [SerializeField] GameObject heartPrefab; 
     [SerializeField] GameObject healthPanel;
-    
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
     public bool HasWeapon { get; set; } = false;
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
@@ -29,10 +30,16 @@ public class Player : MonoBehaviour
     [SerializeField] int money = 500;
     [SerializeField] int health = 5; 
     [SerializeField] float invincibilityDuration = 2f; 
-    private bool isInvincible = false;
-
-    public event Action OnInteractAction;
+    bool isInvincible = false;
     
+    public event Action OnInteractAction; 
+  
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
+
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
@@ -78,7 +85,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
-        
+
+        StartCoroutine(DamagePlayer(0.1f));
         health -= amount; 
         UpdateHealthUI();
 
@@ -92,6 +100,16 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(InvincibilityCoroutine());
         }
+    }
+    IEnumerator DamagePlayer(float duration)
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = originalColor;
     }
     public void ZombieKilled()
     {
@@ -113,7 +131,6 @@ public class Player : MonoBehaviour
 
     void UpdateHealthUI()
     {
-        // Primeiro, limpe o painel de corações
         foreach (Transform child in healthPanel.transform)
         {
             Destroy(child.gameObject);
