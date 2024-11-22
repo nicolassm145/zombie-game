@@ -40,6 +40,7 @@ public class Pistol : MonoBehaviour
 
     public void Reload()
     {
+        
         if (currentAmmo + currentMagazineAmmo < maxMagazineAmmo)
         {
             currentMagazineAmmo += currentAmmo;

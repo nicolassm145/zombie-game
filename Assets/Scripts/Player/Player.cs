@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    GameManager gameManager;
     Animator _playerAnimator;
     Rigidbody2D _playerRb;
     Vector2 _movement;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
   
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
@@ -174,7 +176,11 @@ public class Player : MonoBehaviour
         
         Weapon.Reload();
     }
-    
+
+    void OnPause()
+    {
+        gameManager.OnPause();
+    }
     void Update()
     {
         MovePlayer();
