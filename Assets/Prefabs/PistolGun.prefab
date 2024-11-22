@@ -99,3 +99,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 184337399719150429, guid: eddc076e9cc18ad44948fec38acfab26, type: 3}
   spawnerBulletPos: {fileID: 0}
+  maxAmmo: 120
+  maxMagazineAmmo: 30

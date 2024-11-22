@@ -16,10 +16,8 @@ public class Player : MonoBehaviour
     private float timeAlive = 0f;
     
     [SerializeField] GameObject heartPrefab; 
-    [SerializeField] GameObject healthPanel; 
+    [SerializeField] GameObject healthPanel;
     
-    public int Ammo { get; set; } = 0; 
-    [SerializeField] private int maxAmmo = 30;
     public bool HasWeapon { get; set; } = false;
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
@@ -140,47 +138,24 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = money.ToString();
     }
-    public bool SpendAmmo()
-    {
-        if (Ammo <= 0) return false;
-        Ammo--;
-        UpdateAmmoUI();
-        return true;
-    }
-
-    public void ReloadAmmo()
-    {
-        Ammo = maxAmmo;
-        UpdateAmmoUI();
-    }
-
-    void UpdateAmmoUI()
-    {
-        // Atualize a UI de munição se existir
-        TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
-        if (ammoText != null)
-        {
-            ammoText.text = $"{Ammo}/{maxAmmo}";
-        }
-    }
     
     private void OnFire(InputValue value)
     {
-        if (!HasWeapon || Ammo <= 0) return;
+        if (!HasWeapon) return;
 
-        if (SpendAmmo())
-        {
-            Weapon.Fire();
-        }
-        else
-        {
-            print("Sem munição!");
-        }
+        Weapon.Fire();
     }
 
     void OnInteract(InputValue value)
     {
         OnInteractAction?.Invoke();
+    }
+
+    void OnReload(InputValue value)
+    {
+        if (!HasWeapon) return;
+        
+        Weapon.Reload();
     }
     
     void Update()
