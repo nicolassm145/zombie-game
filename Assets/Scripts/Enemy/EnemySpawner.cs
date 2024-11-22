@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] pos; // Posições para spawn
-    public GameObject enemy; // Prefab do inimigo
+    public GameObject[] pos; 
+    public GameObject enemy; 
     TextMeshProUGUI roundsText; 
     
     private float time; 
@@ -44,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
                 enemyScript.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2)));  
             }
             
-
             currentEnemies++; 
             spawnedZombies++; 
             time = 0; 
@@ -57,16 +56,18 @@ public class EnemySpawner : MonoBehaviour
     }
     void SetupRound()
     {
-        zombiesToSpawn = baseZombies + (round - 1) * 5; // Número de zumbis cresce linearmente
-        maxEnemies = Mathf.RoundToInt(10 * Mathf.Log(round + 1, 2)); // Limite de zumbis vivos cresce logaritmicamente
-        spawnedZombies = 0; // Reseta o contador de spawnados
+        zombiesToSpawn = baseZombies + (round - 1) * 5; 
+        maxEnemies = Mathf.RoundToInt(10 * Mathf.Log(round + 1, 2)); 
+        spawnedZombies = 0;
+        Player player = FindObjectOfType<Player>();
+        player.Round = round;
         print($"Round {round} iniciado! Zombies para spawnar: {zombiesToSpawn}, Máximo vivos: {maxEnemies}");
     }
     
     private void NextRound()
     {
-        round++; // Incrementa o número do round
-        SetupRound(); // Configura os parâmetros para o próximo round
+        round++; 
+        SetupRound(); 
     }
     
     public void EnemyDestroyed()
@@ -76,7 +77,6 @@ public class EnemySpawner : MonoBehaviour
     }
     private void UpdateGameInfo()
     {
-        // Atualiza o texto com as informações do round, spawnados e restantes
         int zombiesRemaining = zombiesToSpawn - spawnedZombies;
         roundsText.text = $"Round: {round}\n";
     }

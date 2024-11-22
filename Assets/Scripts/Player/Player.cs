@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject healthPanel;
     SpriteRenderer spriteRenderer;
     Color originalColor;
+    public int Round { get; set; } = 1;
     public bool HasWeapon { get; set; } = false;
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
         {
             PlayerPrefs.SetFloat("TimeAlive", timeAlive);
             PlayerPrefs.SetInt("ZombiesKilled", zombiesKilled);
+            PlayerPrefs.SetInt("RoundReached", Round);
             SceneManager.LoadScene("GameOver");
         }
         else
