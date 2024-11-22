@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 50
+  damageCooldown: 1
+  poofVFX: {fileID: 7223346616668781506, guid: 7b97ab8a8f8147d41a54cbc6201514f5, type: 3}
 --- !u!50 &-254010814741433792
 Rigidbody2D:
   serializedVersion: 4

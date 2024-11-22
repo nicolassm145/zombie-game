@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damageCooldown = 1f;
     private float lastDamageTime;
     
+    [SerializeField] 
+    GameObject poofVFX;
+        
     void Start()
     { 
         player = GameObject.Find("Player"); 
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour
         if (life <= 0)
         {
             Destroy(gameObject);
+            Die();
         }
     }
     
@@ -106,6 +110,14 @@ public class Enemy : MonoBehaviour
                 playerScript.AddMoney(moneyReward);
             }
         }
+    }
+    void Die()
+    {
+        
+        GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
+        Destroy(poofGO, 1.0f); 
+        Destroy(gameObject, 0.1f);
+        
     }
 
 }
