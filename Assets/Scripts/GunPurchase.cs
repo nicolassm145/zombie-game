@@ -65,7 +65,7 @@ public class GunPurchase : MonoBehaviour
             }
 
             
-            _player.ReloadAmmo();
+            _player.Weapon.BuyAmmo();
         }
         else
         {
