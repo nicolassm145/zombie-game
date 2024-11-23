@@ -1,24 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player; 
+    NavMeshAgent agent; 
+    GameObject player; 
     [SerializeField] int life; 
-    private NavMeshAgent agent; 
     
-    private SpriteRenderer spriteRenderer;
-    private Color originalColor;
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
     
-
-    [SerializeField] private float damageCooldown = 1f;
-    private float lastDamageTime;
+    [SerializeField] float damageCooldown = 0.5f;
+    float lastDamageTime;
     
-    [SerializeField] 
-    GameObject poofVFX;
+    [SerializeField] GameObject poofVFX;
         
     void Start()
     { 
@@ -96,9 +92,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject spawner = GameObject.Find("Spawner");
         if (spawner != null)
-        {
             spawner.GetComponent<EnemySpawner>().EnemyDestroyed();
-        }
 
         if (player != null)
         {
@@ -106,18 +100,16 @@ public class Enemy : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
-                int moneyReward = Random.Range(20, 51); 
+                int moneyReward = Random.Range(5, 25); 
                 playerScript.AddMoney(moneyReward);
             }
         }
     }
+    
     void Die()
     {
-        
         GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
         Destroy(poofGO, 1.0f); 
         Destroy(gameObject, 0.1f);
-        
     }
-
 }

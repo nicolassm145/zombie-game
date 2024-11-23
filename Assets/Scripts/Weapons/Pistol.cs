@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,8 +7,8 @@ public class Pistol : MonoBehaviour
     public GameObject bullet, spawnerBulletPos;
 
     // Munição
-    [SerializeField] private int maxAmmo;
-    [SerializeField] private int maxMagazineAmmo;
+    [SerializeField] int maxAmmo;
+    [SerializeField] int maxMagazineAmmo;
     public int currentAmmo { get; private set; }
     public int currentMagazineAmmo { get; private set; }
 
@@ -34,13 +32,11 @@ public class Pistol : MonoBehaviour
         newBullet.transform.up = direction;
 
         currentMagazineAmmo--;
-        
         UpdateAmmoUI();
     }
 
     public void Reload()
     {
-        
         if (currentAmmo + currentMagazineAmmo < maxMagazineAmmo)
         {
             currentMagazineAmmo += currentAmmo;
@@ -51,7 +47,6 @@ public class Pistol : MonoBehaviour
             currentAmmo = currentAmmo - maxMagazineAmmo + currentMagazineAmmo;
             currentMagazineAmmo = maxMagazineAmmo;
         }
-
         UpdateAmmoUI();
     }
     

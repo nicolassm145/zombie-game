@@ -3,40 +3,32 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool isPaused = false;
-
+    bool _isPaused = false;
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject[] uiElementsToDisable;
 
     void Start()
     {
-        if (pauseMenuUI != null)
-        {
+        if (pauseMenuUI != null) // Força a sempre começar o jogo desligado.
             pauseMenuUI.SetActive(false);
-        }
     }
-    
     
     public void OnPause()
     {
-        if (isPaused)
-        {
+        if (_isPaused)
             ResumeGame();
-        }
         else
-        {
             PauseGame();
-        }
     }
 
     public void PauseGame()
     {
-        isPaused = true;
+        _isPaused = true;
         Time.timeScale = 0; 
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(true);
-            foreach (GameObject uiElement in uiElementsToDisable)
+            foreach (GameObject uiElement in uiElementsToDisable) // Desativa toda a UI
             {
                 uiElement.SetActive(false);
             }
@@ -45,12 +37,12 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        isPaused = false;
+        _isPaused = false;
         Time.timeScale = 1; 
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(false);
-            foreach (GameObject uiElement in uiElementsToDisable)
+            foreach (GameObject uiElement in uiElementsToDisable) // Ativa toda a UI
             {
                 uiElement.SetActive(true);
             }

@@ -4,23 +4,22 @@ using UnityEngine.EventSystems;
 
 public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private TextMeshProUGUI _buttonText;
-
-    [SerializeField] private Color hoverColor = Color.yellow; 
-    [SerializeField] private Color normalColor = Color.white; 
+    TextMeshProUGUI _buttonText;
+    [SerializeField] Color normalColor = Color.white;
+    [SerializeField] Color hoverColor = Color.yellow; 
 
     void Awake()
-    {
+    { 
         _buttonText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-            _buttonText.color = hoverColor;
+        _buttonText.color = hoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
-    {
-            _buttonText.color = normalColor;
+    { 
+        _buttonText.color = normalColor;
     }
 }

@@ -586,7 +586,6 @@ GameObject:
   - component: {fileID: 694594461}
   - component: {fileID: 694594463}
   - component: {fileID: 694594460}
-  - component: {fileID: 694594459}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -614,18 +613,6 @@ RectTransform:
   m_AnchoredPosition: {x: -264.6, y: -350}
   m_SizeDelta: {x: 468, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &694594459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694594457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783736a1c1aebbc4ea2e562fe3e17ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &694594460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,8 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314a8abfb9df5474c993dcc6a88e3652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &790650929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +1073,6 @@ GameObject:
   - component: {fileID: 1006727413}
   - component: {fileID: 1006727415}
   - component: {fileID: 1006727412}
-  - component: {fileID: 1006727411}
   m_Layer: 5
   m_Name: Sair
   m_TagString: Untagged
@@ -1114,18 +1100,6 @@ RectTransform:
   m_AnchoredPosition: {x: 279.21, y: -350}
   m_SizeDelta: {x: 468, y: 118}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1006727411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006727409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783736a1c1aebbc4ea2e562fe3e17ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1006727412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,8 +1206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314a8abfb9df5474c993dcc6a88e3652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1220436957
 GameObject:
   m_ObjectHideFlags: 0

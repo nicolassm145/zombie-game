@@ -1,31 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GunPurchase : MonoBehaviour
 {
-    [SerializeField]
-    int gunCost;
-    [SerializeField] private GameObject gunImage;
-    [SerializeField] private GameObject buyWeaponText;
-    private TextMeshProUGUI _costText;
+    [SerializeField] int gunCost;
+    [SerializeField] GameObject gunImage;
+    [SerializeField] GameObject buyWeaponText;
+    TextMeshProUGUI _costText;
 
-    [SerializeField] private GameObject gunPrefab;
+    [SerializeField] GameObject gunPrefab;
 
-    private bool _isPlayerInRange = false;
-    private Player _player;
+    bool _isPlayerInRange = false;
+    Player _player;
     
-    // Start is called before the first frame update
     void Start()
     {
         _costText = buyWeaponText.GetComponent<TextMeshProUGUI>();
         buyWeaponText.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
@@ -37,7 +31,7 @@ public class GunPurchase : MonoBehaviour
         _player.OnInteractAction += BuyWeapon; // Adiciona o método BuyWeapon ao evento de interação
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         
@@ -48,12 +42,12 @@ public class GunPurchase : MonoBehaviour
         _isPlayerInRange = false;
     }
 
-    private void BuyWeapon()
+    void BuyWeapon()
     {
         if (!_isPlayerInRange) return;
         
         bool purchased = _player.SpendMoney(gunCost);
-
+        
         if (purchased)
         {
             if (!_player.HasWeapon)
@@ -63,8 +57,6 @@ public class GunPurchase : MonoBehaviour
                 _player.Weapon = gunPrefab.GetComponent<Pistol>();
                 _player.Weapon.spawnerBulletPos = _player.spawnerBulletPos;
             }
-
-            
             _player.Weapon.BuyAmmo();
         }
         else
