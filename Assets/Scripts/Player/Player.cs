@@ -7,41 +7,50 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    // UI
+    GameManager gameManager;
+    TextMeshProUGUI _moneyText;
+    [SerializeField] GameObject heartPrefab; 
+    [SerializeField] GameObject healthPanel;
+    
+    // Player
     Animator _playerAnimator;
     Rigidbody2D _playerRb;
     Vector2 _movement;
-    TextMeshProUGUI _moneyText;
-    TextMeshProUGUI healthText; 
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
+    
+    // Caracteristicas do player
+    [SerializeField] float movespeed;
+    [SerializeField] int money = 500;
+    [SerializeField] int health = 5; 
+    [SerializeField] float invincibilityDuration = 0.5f;
+    
+    // Infos
+    [SerializeField] LayerMask solidObjectsLayer;  // Colisão
     int zombiesKilled = 0;
-    private float timeAlive = 0f;
+    float timeAlive = 0f;
+    public int Round { get; set; } = 1;
+    bool isInvincible = false;
+    public event Action OnInteractAction; 
     
-    [SerializeField] GameObject heartPrefab; 
-    [SerializeField] GameObject healthPanel; 
-    
-    public int Ammo { get; set; } = 0; 
-    [SerializeField] private int maxAmmo = 30;
+    // Logica da arma
     public bool HasWeapon { get; set; } = false;
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
     
-    [SerializeField] LayerMask solidObjectsLayer;
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
 
-    [SerializeField] float movespeed;
-
-    [SerializeField] int money = 500;
-    [SerializeField] int health = 5; 
-    [SerializeField] float invincibilityDuration = 2f; 
-    private bool isInvincible = false;
-
-    public event Action OnInteractAction;
-    
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
-        
         _moneyText = GameObject.FindWithTag("MoneyUI").GetComponent<TextMeshProUGUI>();
-        healthText = GameObject.FindWithTag("LifeUI").GetComponent<TextMeshProUGUI>();
         UpdateHealthUI();
     }
 
@@ -55,13 +64,10 @@ public class Player : MonoBehaviour
         Vector3 targetPosition = _playerRb.position + _movement * (movespeed * Time.fixedDeltaTime);
         
         if (IsWalkable(targetPosition))
-        {
             _playerRb.MovePosition(targetPosition); 
-        }
 
         bool isWalking = _movement.magnitude > Mathf.Epsilon;
         _playerAnimator.SetBool("isWalking", isWalking);
-
         _playerAnimator.SetFloat("Horizontal", _movement.x);
         _playerAnimator.SetFloat("Vertical", _movement.y);
     }
@@ -80,7 +86,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
-        
+
+        StartCoroutine(DamagePlayer(0.125f));
         health -= amount; 
         UpdateHealthUI();
 
@@ -88,12 +95,23 @@ public class Player : MonoBehaviour
         {
             PlayerPrefs.SetFloat("TimeAlive", timeAlive);
             PlayerPrefs.SetInt("ZombiesKilled", zombiesKilled);
+            PlayerPrefs.SetInt("RoundReached", Round);
             SceneManager.LoadScene("GameOver");
         }
         else
         {
             StartCoroutine(InvincibilityCoroutine());
         }
+    }
+    IEnumerator DamagePlayer(float duration)
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = originalColor;
     }
     public void ZombieKilled()
     {
@@ -102,7 +120,6 @@ public class Player : MonoBehaviour
     IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true; 
-        
         float elapsed = 0f;
        
         while (elapsed < invincibilityDuration)
@@ -115,7 +132,6 @@ public class Player : MonoBehaviour
 
     void UpdateHealthUI()
     {
-        // Primeiro, limpe o painel de corações
         foreach (Transform child in healthPanel.transform)
         {
             Destroy(child.gameObject);
@@ -140,47 +156,29 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = money.ToString();
     }
-    public bool SpendAmmo()
-    {
-        if (Ammo <= 0) return false;
-        Ammo--;
-        UpdateAmmoUI();
-        return true;
-    }
-
-    public void ReloadAmmo()
-    {
-        Ammo = maxAmmo;
-        UpdateAmmoUI();
-    }
-
-    void UpdateAmmoUI()
-    {
-        // Atualize a UI de munição se existir
-        TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
-        if (ammoText != null)
-        {
-            ammoText.text = $"{Ammo}/{maxAmmo}";
-        }
-    }
     
-    private void OnFire(InputValue value)
+    void OnFire(InputValue value)
     {
-        if (!HasWeapon || Ammo <= 0) return;
+        if (!HasWeapon) return;
 
-        if (SpendAmmo())
-        {
-            Weapon.Fire();
-        }
-        else
-        {
-            print("Sem munição!");
-        }
+        Weapon.Fire();
     }
 
     void OnInteract(InputValue value)
     {
         OnInteractAction?.Invoke();
+    }
+
+    void OnReload(InputValue value)
+    {
+        if (!HasWeapon) return;
+        
+        Weapon.Reload();
+    }
+
+    void OnPause()
+    {
+        gameManager.OnPause();
     }
     
     void Update()

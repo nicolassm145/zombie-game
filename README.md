@@ -5,7 +5,9 @@
 
 **Versão da Unity:** `2022.3.50f1`
 
-**Tileset utilizado:** O jogo utiliza o tileset **Zombie Apocalypse Tileset**, desenvolvido por **Ittai Manero**, disponível em [https://ittaimanero.itch.io/zombie-apocalypse-tileset](https://ittaimanero.itch.io/zombie-apocalypse-tileset).
+**Tileset utilizado:** O jogo utiliza o tileset **Zombie Apocalypse Tileset**, desenvolvido por **Ittai Manero**, disponível em [https://ittaimanero.itch.io/zombie-apocalypse-tileset](https://ittaimanero.itch.io/zombie-apocalypse-tileset)
+
+Smoke: [https://nyknck.itch.io/fx062](https://nyknck.itch.io/fx062).
 
 ---
 

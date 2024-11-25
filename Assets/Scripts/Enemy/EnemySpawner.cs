@@ -1,39 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] pos; // Posições para spawn
-    public GameObject enemy; // Prefab do inimigo
-    private float tempo; // Controle do tempo entre spawns
-    public int maxEnemies = 10; // Limite máximo de inimigos ativos na cena
-    private int currentEnemies = 0; // Contador de inimigos ativos
+    TextMeshProUGUI roundsText;
+    
+    public GameObject[] pos; 
+    public GameObject enemy; 
+    
+    float time; 
+    int baseZombies = 10;
+    int round = 1;
+    int zombiesToSpawn;     // Zumbis que vão spawnar
+    int spawnedZombies;     // Limite do round
+    int maxEnemies;         // Limite max. de inimigos ativos
+    int currentEnemies = 0; 
 
     void Start()
     {
-        tempo = 0; // Inicializa o tempo
+        time = 0; 
+        SetupRound();
+        roundsText = GameObject.FindWithTag("RoundInfo").GetComponent<TextMeshProUGUI>();
+        UpdateGameInfo();
     }
 
-    void Update()
+   void Update()
     {
-        tempo += Time.deltaTime;
-
-        // Verifica o tempo e o limite de inimigos ativos
-        if (tempo >= 1.5f && currentEnemies < maxEnemies)
+        time += Time.deltaTime;
+        
+        if (time >= 1.5f && spawnedZombies < zombiesToSpawn && currentEnemies < maxEnemies)
         {
-            int x = Random.Range(0, pos.Length); // Seleciona uma posição aleatória
-            Instantiate(enemy, pos[x].transform.position, Quaternion.identity);
-
-            currentEnemies++; // Incrementa o número de inimigos ativos
-            tempo = 0; // Reseta o tempo
+            int spawn = Random.Range(0, pos.Length); 
+            GameObject newEnemy = Instantiate(enemy, pos[spawn].transform.position, Quaternion.identity);
+            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            if (round == 1)
+            {
+                enemyScript.SetLife(30); 
+            }
+            else
+            {
+                enemyScript.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2)));  
+            }
+            currentEnemies++; 
+            spawnedZombies++; 
+            time = 0; 
+            UpdateGameInfo();
+        }
+        if (spawnedZombies == zombiesToSpawn && currentEnemies == 0)
+        {
+            NextRound();
         }
     }
-
+   
+    void NextRound()
+    {
+        round++; 
+        SetupRound(); 
+    }
+    void SetupRound()
+    {
+        zombiesToSpawn = baseZombies + (round - 1) * 5; 
+        maxEnemies = Mathf.RoundToInt(10 * Mathf.Log(round + 1, 2)); 
+        spawnedZombies = 0;
+        Player player = FindObjectOfType<Player>();
+        player.Round = round;
+    }
+    
     public void EnemyDestroyed()
     {
-        // Diminui o número de inimigos ativos, garantindo que não fique negativo
         currentEnemies = Mathf.Max(0, currentEnemies - 1);
-        Debug.Log($"Inimigo destruído. Total de inimigos ativos: {currentEnemies}");
+        UpdateGameInfo();
+    }
+    void UpdateGameInfo()
+    {
+        int zombiesRemaining = zombiesToSpawn - spawnedZombies;
+        roundsText.text = $"{round}";
     }
 }
+

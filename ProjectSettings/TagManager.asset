@@ -9,6 +9,7 @@ TagManager:
   - bullet
   - LifeUI
   - AmmoUI
+  - RoundInfo
   layers:
   - Default
   - TransparentFX

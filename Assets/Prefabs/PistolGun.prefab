@@ -97,5 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdaad7375729de40ba9e65737e02252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 184337399719150429, guid: eddc076e9cc18ad44948fec38acfab26, type: 3}
+  bullet: {fileID: 8687356271557371455, guid: 5a93dfd64e8d6524caadeab408f0d9cf, type: 3}
   spawnerBulletPos: {fileID: 0}
+  maxAmmo: 120
+  maxMagazineAmmo: 30

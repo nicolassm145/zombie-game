@@ -1,19 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player; 
-    
+    NavMeshAgent agent; 
+    GameObject player; 
     [SerializeField] int life; 
-    private NavMeshAgent agent; 
+    
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
+    
+    [SerializeField] float damageCooldown = 0.5f;
+    float lastDamageTime;
+    
+    [SerializeField] GameObject poofVFX;
+        
     void Start()
     { 
         player = GameObject.Find("Player"); 
         agent = GetComponent<NavMeshAgent>(); 
         
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -22,19 +31,41 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         agent.SetDestination(player.transform.position);
-        
         if (life <= 0)
         {
             Destroy(gameObject);
+            Die();
         }
     }
-
+    
+    public void SetLife(int newLife)
+    {
+        life = newLife;
+    }
+    
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (Time.time - lastDamageTime >= damageCooldown)
+            {
+                Player playerScript = collision.GetComponent<Player>();
+                if (playerScript != null)
+                {
+                    playerScript.TakeDamage(1); 
+                    lastDamageTime = Time.time; 
+                }
+            }
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("bullet"))
         {
-            life -= 10; // Reduz a vida do inimigo
-            Destroy(collision.gameObject); // Destroi o projétil
+            life -= 10; 
+            Destroy(collision.gameObject);
+            StartCoroutine(DamageZombie(0.1f));
         }
 
         if (collision.CompareTag("Player"))
@@ -42,19 +73,26 @@ public class Enemy : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(1); // Causa 1 de dano ao jogador
+                player.TakeDamage(1); 
             }
         }
     }
-
+    IEnumerator DamageZombie(float duration)
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = originalColor;
+    }
     
     void OnDestroy()
     {
         GameObject spawner = GameObject.Find("Spawner");
         if (spawner != null)
-        {
             spawner.GetComponent<EnemySpawner>().EnemyDestroyed();
-        }
 
         if (player != null)
         {
@@ -62,10 +100,16 @@ public class Enemy : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
-                int moneyReward = Random.Range(20, 51); 
+                int moneyReward = Random.Range(5, 25); 
                 playerScript.AddMoney(moneyReward);
             }
         }
     }
-
+    
+    void Die()
+    {
+        GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
+        Destroy(poofGO, 1.0f); 
+        Destroy(gameObject, 0.1f);
+    }
 }
