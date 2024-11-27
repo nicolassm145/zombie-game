@@ -1,20 +1,39 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Pistol : MonoBehaviour
 {
-    public GameObject bullet, spawnerBulletPos;
+    // Bullet
+    public GameObject bullet;
+    public GameObject SpawnerBulletPos { get; set; }
+    
+    // Recarregar
+    [SerializeField] private GameObject slideBarObject;
+    private Slider _reloadBar;
+    public bool IsReloading { get; set; }
+    public float reloadTime = 3f;
 
     // Munição
-    [SerializeField] int maxAmmo;
-    [SerializeField] int maxMagazineAmmo;
-    public int currentAmmo { get; private set; }
-    public int currentMagazineAmmo { get; private set; }
+    [SerializeField] private int maxAmmo;
+    [SerializeField] private int maxMagazineAmmo;
+    private int _currentAmmo;
+    private int _currentMagazineAmmo;
+
+    private void Start()
+    {
+        _reloadBar = slideBarObject.GetComponent<Slider>();
+    }
 
     public void Fire()
     {
-        if (currentMagazineAmmo == 0) return;
+        if (_currentMagazineAmmo == 0) return;
+
+        IsReloading = false; // Cancela o reload
         
         // Obtém a posição do mouse na tela
         Vector3 mousePos = Mouse.current.position.ReadValue();
@@ -22,48 +41,72 @@ public class Pistol : MonoBehaviour
 
         // Calcula a direção do tiro
         Vector2 direction = new Vector2(
-            mousePos.x - spawnerBulletPos.transform.position.x,
-            mousePos.y - spawnerBulletPos.transform.position.y
+            mousePos.x - SpawnerBulletPos.transform.position.x,
+            mousePos.y - SpawnerBulletPos.transform.position.y
         );
         direction.Normalize();
 
         // Cria a bala e ajusta sua direção
-        GameObject newBullet = Instantiate(bullet, spawnerBulletPos.transform.position, Quaternion.identity);
+        GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
         newBullet.transform.up = direction;
 
-        currentMagazineAmmo--;
+        _currentMagazineAmmo--;
         UpdateAmmoUI();
     }
 
-    public void Reload()
+    public IEnumerator IEReload()
     {
-        if (currentAmmo + currentMagazineAmmo < maxMagazineAmmo)
+        IsReloading = true;
+        slideBarObject.SetActive(true); // Ativa a barra de progresso
+
+        float elapsed = 0f;
+
+        while (elapsed < reloadTime)
         {
-            currentMagazineAmmo += currentAmmo;
-            currentAmmo = 0;
+            if (!IsReloading)
+            {
+                // Sai do reload sem completar
+                slideBarObject.SetActive(false); // Esconde a barra
+                yield break;
+            }
+            
+            elapsed += Time.deltaTime;
+            _reloadBar.value = elapsed / reloadTime; // Atualiza a barra de progresso
+            yield return null; // Espera o próximo frame
+        }
+
+        // Completa o reload
+        if (_currentAmmo + _currentMagazineAmmo < maxMagazineAmmo)
+        {
+            _currentMagazineAmmo += _currentAmmo;
+            _currentAmmo = 0;
         }
         else
         {
-            currentAmmo = currentAmmo - maxMagazineAmmo + currentMagazineAmmo;
-            currentMagazineAmmo = maxMagazineAmmo;
+            _currentAmmo = _currentAmmo - maxMagazineAmmo + _currentMagazineAmmo;
+            _currentMagazineAmmo = maxMagazineAmmo;
         }
+
+        slideBarObject.SetActive(false); // Oculta a barra após o recarregamento
+        IsReloading = false;
+
         UpdateAmmoUI();
     }
     
     public void BuyAmmo()
     {
-        currentAmmo = maxAmmo;
-        currentMagazineAmmo = maxMagazineAmmo;
+        _currentAmmo = maxAmmo;
+        _currentMagazineAmmo = maxMagazineAmmo;
         UpdateAmmoUI();
     }
-    
-    void UpdateAmmoUI()
+
+    private void UpdateAmmoUI()
     {
         // Atualize a UI de munição se existir
         TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
         if (ammoText != null)
         {
-            ammoText.text = $"{currentMagazineAmmo}/{currentAmmo}";
+            ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
         }
     }
 }

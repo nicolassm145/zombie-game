@@ -55,7 +55,7 @@ public class GunPurchase : MonoBehaviour
                 gunImage.SetActive(true);
                 _player.HasWeapon = true;
                 _player.Weapon = gunPrefab.GetComponent<Pistol>();
-                _player.Weapon.spawnerBulletPos = _player.spawnerBulletPos;
+                _player.Weapon.SpawnerBulletPos = _player.spawnerBulletPos;
             }
             _player.Weapon.BuyAmmo();
         }

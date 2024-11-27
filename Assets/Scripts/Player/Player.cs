@@ -169,6 +169,8 @@ public class Player : MonoBehaviour
     void OnRun(InputValue value)
     {
         _isRunning = !_isRunning;
+
+        if (HasWeapon) Weapon.IsReloading = !_isRunning && Weapon.IsReloading; // Cancela o reload
     }
     
     void OnFire(InputValue value)
@@ -188,8 +190,10 @@ public class Player : MonoBehaviour
     void OnReload(InputValue value)
     {
         if (!HasWeapon) return;
-        
-        Weapon.Reload();
+
+        _isRunning = false; // Cancela a corrida quando carregar
+
+        StartCoroutine(Weapon.IEReload());
     }
 
     void OnPause()
