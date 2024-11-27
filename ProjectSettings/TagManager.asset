@@ -10,6 +10,7 @@ TagManager:
   - LifeUI
   - AmmoUI
   - RoundInfo
+  - ReloadBar
   layers:
   - Default
   - TransparentFX
