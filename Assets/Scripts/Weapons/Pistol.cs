@@ -23,10 +23,12 @@ public class Pistol : MonoBehaviour
     [SerializeField] private int maxMagazineAmmo;
     private int _currentAmmo;
     private int _currentMagazineAmmo;
+    private TextMeshProUGUI _ammoText;
 
     private void Start()
     {
         _reloadBar = slideBarObject.GetComponent<Slider>();
+        _ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
     }
 
     public void Fire()
@@ -103,10 +105,9 @@ public class Pistol : MonoBehaviour
     private void UpdateAmmoUI()
     {
         // Atualize a UI de munição se existir
-        TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
-        if (ammoText != null)
+        if (_ammoText)
         {
-            ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
+            _ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
         }
     }
 }
