@@ -1,20 +1,43 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Pistol : MonoBehaviour
 {
-    public GameObject bullet, spawnerBulletPos;
+    // Bullet
+    public GameObject bullet;
+    public GameObject SpawnerBulletPos { get; set; }
+    
+    // Recarregar
+    [SerializeField] private GameObject slideBarObject;
+    private Slider _reloadBar;
+    public bool IsReloading { get; set; }
+    public float reloadTime = 3f;
 
     // Munição
-    [SerializeField] int maxAmmo;
-    [SerializeField] int maxMagazineAmmo;
-    public int currentAmmo { get; private set; }
-    public int currentMagazineAmmo { get; private set; }
+    [SerializeField] private int maxAmmo;
+    [SerializeField] private int maxMagazineAmmo;
+    private int _currentAmmo;
+    private int _currentMagazineAmmo;
+    private TextMeshProUGUI _ammoText;
+    private TextMeshProUGUI _warningText;
+
+    private void Start()
+    {
+        _reloadBar = slideBarObject.GetComponent<Slider>();
+        _ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
+        _warningText = GameObject.FindWithTag("Warning")?.GetComponent<TextMeshProUGUI>();
+    }
 
     public void Fire()
     {
-        if (currentMagazineAmmo == 0) return;
+        if (_currentMagazineAmmo == 0) return;
+
+        IsReloading = false; // Cancela o reload
         
         // Obtém a posição do mouse na tela
         Vector3 mousePos = Mouse.current.position.ReadValue();
@@ -22,48 +45,119 @@ public class Pistol : MonoBehaviour
 
         // Calcula a direção do tiro
         Vector2 direction = new Vector2(
-            mousePos.x - spawnerBulletPos.transform.position.x,
-            mousePos.y - spawnerBulletPos.transform.position.y
+            mousePos.x - SpawnerBulletPos.transform.position.x,
+            mousePos.y - SpawnerBulletPos.transform.position.y
         );
         direction.Normalize();
 
         // Cria a bala e ajusta sua direção
-        GameObject newBullet = Instantiate(bullet, spawnerBulletPos.transform.position, Quaternion.identity);
+        GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
         newBullet.transform.up = direction;
 
-        currentMagazineAmmo--;
+        _currentMagazineAmmo--;
         UpdateAmmoUI();
+        CheckAmmo();
     }
 
-    public void Reload()
+    public IEnumerator IEReload()
     {
-        if (currentAmmo + currentMagazineAmmo < maxMagazineAmmo)
+        IsReloading = true;
+        slideBarObject.SetActive(true); // Ativa a barra de progresso
+
+        float elapsed = 0f;
+
+        while (elapsed < reloadTime)
         {
-            currentMagazineAmmo += currentAmmo;
-            currentAmmo = 0;
+            if (!IsReloading)
+            {
+                // Sai do reload sem completar
+                slideBarObject.SetActive(false); // Esconde a barra
+                yield break;
+            }
+            
+            elapsed += Time.deltaTime;
+            _reloadBar.value = elapsed / reloadTime; // Atualiza a barra de progresso
+            yield return null; // Espera o próximo frame
+        }
+
+        // Completa o reload
+        if (_currentAmmo + _currentMagazineAmmo < maxMagazineAmmo)
+        {
+            _currentMagazineAmmo += _currentAmmo;
+            _currentAmmo = 0;
         }
         else
         {
-            currentAmmo = currentAmmo - maxMagazineAmmo + currentMagazineAmmo;
-            currentMagazineAmmo = maxMagazineAmmo;
+            _currentAmmo = _currentAmmo - maxMagazineAmmo + _currentMagazineAmmo;
+            _currentMagazineAmmo = maxMagazineAmmo;
         }
+
+        slideBarObject.SetActive(false); // Oculta a barra após o recarregamento
+        IsReloading = false;
+
         UpdateAmmoUI();
+        CheckAmmo();
     }
     
     public void BuyAmmo()
     {
-        currentAmmo = maxAmmo;
-        currentMagazineAmmo = maxMagazineAmmo;
+        _currentAmmo = maxAmmo;
+        _currentMagazineAmmo = maxMagazineAmmo;
         UpdateAmmoUI();
+        CheckAmmo();
     }
-    
-    void UpdateAmmoUI()
+
+    private void UpdateAmmoUI()
     {
         // Atualize a UI de munição se existir
-        TextMeshProUGUI ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
-        if (ammoText != null)
+        if (_ammoText)
         {
-            ammoText.text = $"{currentMagazineAmmo}/{currentAmmo}";
+            _ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
         }
+    }
+
+    private void CheckAmmo()
+    {
+        if (_warningText == null) return;
+
+        string text = _warningText.text;
+
+        // Gerenciar a mensagem de recarregar
+        string reloadWarning = "Pressione [R] para recarregar\n";
+        if (_currentMagazineAmmo <= maxMagazineAmmo * 0.3f)
+        {
+            if (!text.Contains(reloadWarning))
+            {
+                text += reloadWarning; // Adiciona a mensagem de recarregar
+            }
+        }
+        else
+        {
+            int reloadStartIndex = text.IndexOf(reloadWarning);
+            if (reloadStartIndex != -1)
+            {
+                text = text.Remove(reloadStartIndex, reloadWarning.Length); // Remove a mensagem de recarregar
+            }
+        }
+
+        // Gerenciar a mensagem de munição acabando
+        string ammoWarning = "Munição acabando\n";
+        if (_currentAmmo <= maxMagazineAmmo)
+        {
+            if (!text.Contains(ammoWarning))
+            {
+                text += ammoWarning; // Adiciona a mensagem de munição acabando
+            }
+        }
+        else
+        {
+            int ammoStartIndex = text.IndexOf(ammoWarning);
+            if (ammoStartIndex != -1)
+            {
+                text = text.Remove(ammoStartIndex, ammoWarning.Length); // Remove a mensagem de munição acabando
+            }
+        }
+
+        _warningText.text = text;
     }
 }
