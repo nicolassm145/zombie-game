@@ -24,11 +24,13 @@ public class Pistol : MonoBehaviour
     private int _currentAmmo;
     private int _currentMagazineAmmo;
     private TextMeshProUGUI _ammoText;
+    private TextMeshProUGUI _warningText;
 
     private void Start()
     {
         _reloadBar = slideBarObject.GetComponent<Slider>();
         _ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
+        _warningText = GameObject.FindWithTag("Warning")?.GetComponent<TextMeshProUGUI>();
     }
 
     public void Fire()
@@ -54,6 +56,7 @@ public class Pistol : MonoBehaviour
 
         _currentMagazineAmmo--;
         UpdateAmmoUI();
+        CheckAmmo();
     }
 
     public IEnumerator IEReload()
@@ -93,6 +96,7 @@ public class Pistol : MonoBehaviour
         IsReloading = false;
 
         UpdateAmmoUI();
+        CheckAmmo();
     }
     
     public void BuyAmmo()
@@ -100,6 +104,7 @@ public class Pistol : MonoBehaviour
         _currentAmmo = maxAmmo;
         _currentMagazineAmmo = maxMagazineAmmo;
         UpdateAmmoUI();
+        CheckAmmo();
     }
 
     private void UpdateAmmoUI()
@@ -109,5 +114,50 @@ public class Pistol : MonoBehaviour
         {
             _ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
         }
+    }
+
+    private void CheckAmmo()
+    {
+        if (_warningText == null) return;
+
+        string text = _warningText.text;
+
+        // Gerenciar a mensagem de recarregar
+        string reloadWarning = "Pressione [R] para recarregar\n";
+        if (_currentMagazineAmmo <= maxMagazineAmmo * 0.3f)
+        {
+            if (!text.Contains(reloadWarning))
+            {
+                text += reloadWarning; // Adiciona a mensagem de recarregar
+            }
+        }
+        else
+        {
+            int reloadStartIndex = text.IndexOf(reloadWarning);
+            if (reloadStartIndex != -1)
+            {
+                text = text.Remove(reloadStartIndex, reloadWarning.Length); // Remove a mensagem de recarregar
+            }
+        }
+
+        // Gerenciar a mensagem de munição acabando
+        string ammoWarning = "Munição acabando\n";
+        if (_currentAmmo <= maxMagazineAmmo)
+        {
+            if (!text.Contains(ammoWarning))
+            {
+                text += ammoWarning; // Adiciona a mensagem de munição acabando
+            }
+        }
+        else
+        {
+            int ammoStartIndex = text.IndexOf(ammoWarning);
+            if (ammoStartIndex != -1)
+            {
+                text = text.Remove(ammoStartIndex, ammoWarning.Length); // Remove a mensagem de munição acabando
+            }
+        }
+
+        _warningText.text = text;
     }
 }

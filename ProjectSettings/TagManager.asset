@@ -11,6 +11,7 @@ TagManager:
   - AmmoUI
   - RoundInfo
   - ReloadBar
+  - Warning
   layers:
   - Default
   - TransparentFX

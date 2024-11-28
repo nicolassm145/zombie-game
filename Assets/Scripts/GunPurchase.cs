@@ -5,7 +5,6 @@ public class GunPurchase : MonoBehaviour
 {
     [SerializeField] int gunCost;
     [SerializeField] GameObject gunImage;
-    [SerializeField] GameObject buyWeaponText;
     TextMeshProUGUI _costText;
 
     [SerializeField] GameObject gunPrefab;
@@ -15,16 +14,14 @@ public class GunPurchase : MonoBehaviour
     
     void Start()
     {
-        _costText = buyWeaponText.GetComponent<TextMeshProUGUI>();
-        buyWeaponText.SetActive(false);
+        _costText = GameObject.FindWithTag("Warning").GetComponent<TextMeshProUGUI>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        _costText.text = "Pressione [F] para comprar por " + gunCost.ToString();
-        buyWeaponText.SetActive(true);
+        _costText.text += "Pressione [F] para comprar por " + gunCost.ToString() + " dinheiros\n";
             
         _player = other.gameObject.GetComponent<Player>();
         _isPlayerInRange = true;
@@ -34,8 +31,17 @@ public class GunPurchase : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+
+        string buyWarning = "Pressione [F] para comprar por " + gunCost.ToString() + " dinheiros\n";
+        string text = _costText.text;
+        int startIndex = text.IndexOf(buyWarning); // Localiza o índice inicial do trecho a ser removido
+
+        if (startIndex != -1)
+        { 
+            text = text.Remove(startIndex, buyWarning.Length);  // Remove o trecho
+        }
         
-        buyWeaponText.SetActive(false);
+        _costText.text = text;  // Atribui a atualização ao texto
         
         _player.OnInteractAction -= BuyWeapon; // Remove o método BuyWeapon do evento de interação
         _player = null;
