@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     
     // Caracteristicas do player
     [SerializeField] float movespeed;
+    [SerializeField] float runSpeed;
     [SerializeField] int money = 500;
     [SerializeField] int health = 5; 
     [SerializeField] float invincibilityDuration = 0.5f;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     int zombiesKilled = 0;
     float timeAlive = 0f;
     public int Round { get; set; } = 1;
+    private bool _isRunning;
     bool isInvincible = false;
     public event Action OnInteractAction; 
     
@@ -61,26 +63,33 @@ public class Player : MonoBehaviour
     
     void MovePlayer()
     {
-        Vector3 targetPosition = _playerRb.position + _movement * (movespeed * Time.fixedDeltaTime);
+        float currentSpeed = _isRunning ? runSpeed : movespeed; // Aplica a velocidade correta dependendo se estiver correndo
+        Vector3 targetPosition = _playerRb.position + _movement * (currentSpeed * Time.fixedDeltaTime);
         
         if (IsWalkable(targetPosition))
             _playerRb.MovePosition(targetPosition); 
 
         bool isWalking = _movement.magnitude > Mathf.Epsilon;
+        float speed = _isRunning ? 1 : 0.5f;    // Velocidade da animação aumenta se estiver correndo
+        
         _playerAnimator.SetBool("isWalking", isWalking);
         _playerAnimator.SetFloat("Horizontal", _movement.x);
         _playerAnimator.SetFloat("Vertical", _movement.y);
+        _playerAnimator.SetFloat("Speed", speed);
+
+        // Para de correr se o player parar de andar
+        _isRunning = isWalking && _isRunning;
+    }
+    
+    bool IsWalkable(Vector3 targetPosition)
+    {
+        return Physics2D.OverlapCircle(targetPosition, 0.2f, solidObjectsLayer) is null;
     }
     
     public void AddMoney(int amount)
     {
         money += amount;
         UpdateMoneyUI();
-    }
-    
-    bool IsWalkable(Vector3 targetPosition)
-    {
-        return Physics2D.OverlapCircle(targetPosition, 0.2f, solidObjectsLayer) is null;
     }
     
     public void TakeDamage(int amount)
@@ -156,10 +165,19 @@ public class Player : MonoBehaviour
     {
         _moneyText.text = money.ToString();
     }
+
+    void OnRun(InputValue value)
+    {
+        _isRunning = !_isRunning;
+
+        if (HasWeapon) Weapon.IsReloading = !_isRunning && Weapon.IsReloading; // Cancela o reload
+    }
     
     void OnFire(InputValue value)
     {
         if (!HasWeapon) return;
+
+        _isRunning = false;
 
         Weapon.Fire();
     }
@@ -172,8 +190,10 @@ public class Player : MonoBehaviour
     void OnReload(InputValue value)
     {
         if (!HasWeapon) return;
-        
-        Weapon.Reload();
+
+        _isRunning = false; // Cancela a corrida quando carregar
+
+        StartCoroutine(Weapon.IEReload());
     }
 
     void OnPause()
