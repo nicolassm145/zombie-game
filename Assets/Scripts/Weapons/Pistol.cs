@@ -38,17 +38,28 @@ public class Pistol : MonoBehaviour
         if (_currentMagazineAmmo == 0) return;
 
         IsReloading = false; // Cancela o reload
-        
-        // Obtém a posição do mouse na tela
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+    
+        Vector2 direction;
 
-        // Calcula a direção do tiro
-        Vector2 direction = new Vector2(
-            mousePos.x - SpawnerBulletPos.transform.position.x,
-            mousePos.y - SpawnerBulletPos.transform.position.y
-        );
-        direction.Normalize();
+        // Detecta se um controle está conectado e o analógico está sendo usado
+        Gamepad gamepad = Gamepad.current;
+        if (gamepad != null && gamepad.rightStick.ReadValue().magnitude > 0.1f)
+        {
+            // Usa o analógico direito para calcular a direção
+            direction = gamepad.rightStick.ReadValue();
+        }
+        else
+        {
+            // Usa o mouse para calcular a direção
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+            direction = new Vector2(
+                mousePos.x - SpawnerBulletPos.transform.position.x,
+                mousePos.y - SpawnerBulletPos.transform.position.y
+            );
+        }
+
+        direction.Normalize(); // Normaliza a direção para garantir que o vetor seja unitário
 
         // Cria a bala e ajusta sua direção
         GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
@@ -61,6 +72,8 @@ public class Pistol : MonoBehaviour
 
     public IEnumerator IEReload()
     {
+        if (_currentMagazineAmmo == maxMagazineAmmo) yield break;   // Não recarrega se estiver com munição cheia
+        
         IsReloading = true;
         slideBarObject.SetActive(true); // Ativa a barra de progresso
 
