@@ -41,11 +41,15 @@ public class Player : MonoBehaviour
     public Pistol Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
     
+    // Sons do Player
+    AudioSource _audioSource; 
+    [SerializeField] AudioClip footStepClip;
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Awake()
@@ -79,6 +83,13 @@ public class Player : MonoBehaviour
 
         // Para de correr se o player parar de andar
         _isRunning = isWalking && _isRunning;
+        
+        // Toca o som de passo se estiver andando
+        if (isWalking && !_audioSource.isPlaying)
+        {
+            _audioSource.pitch = _isRunning ? 1.2f : 1f; // Aumenta o pitch ao correr, diminui ao andar
+            _audioSource.PlayOneShot(footStepClip);       // Reproduz o som do passo
+        }
     }
     
     bool IsWalkable(Vector3 targetPosition)
