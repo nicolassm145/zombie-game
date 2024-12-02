@@ -72,7 +72,7 @@ public class Pistol : MonoBehaviour
 
     public IEnumerator IEReload()
     {
-        if (_currentMagazineAmmo == maxMagazineAmmo) yield break;   // Não recarrega se estiver com munição cheia
+        if (_currentMagazineAmmo == maxMagazineAmmo || _currentAmmo == 0) yield break;   // Não recarrega se estiver com munição cheia
         
         IsReloading = true;
         slideBarObject.SetActive(true); // Ativa a barra de progresso
