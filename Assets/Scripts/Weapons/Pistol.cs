@@ -13,31 +13,42 @@ public class Pistol : MonoBehaviour
     public GameObject SpawnerBulletPos { get; set; }
     
     // Recarregar
-    [SerializeField] private GameObject slideBarObject;
-    private Slider _reloadBar;
+    [SerializeField] GameObject slideBarObject;
+    Slider _reloadBar;
     public bool IsReloading { get; set; }
     public float reloadTime = 3f;
 
     // Munição
-    [SerializeField] private int maxAmmo;
-    [SerializeField] private int maxMagazineAmmo;
-    private int _currentAmmo;
-    private int _currentMagazineAmmo;
-    private TextMeshProUGUI _ammoText;
-    private TextMeshProUGUI _warningText;
-
-    private void Start()
+    [SerializeField] int maxAmmo;
+    [SerializeField] int maxMagazineAmmo;
+    int _currentAmmo;
+    int _currentMagazineAmmo;
+    TextMeshProUGUI _ammoText;
+    TextMeshProUGUI _warningText;
+    
+    // Sons
+    [SerializeField] AudioClip pistolFire;
+    [SerializeField] AudioClip pistolReload; 
+    AudioSource _audioSource;
+    
+    void Start()
     {
         _reloadBar = slideBarObject.GetComponent<Slider>();
         _ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
         _warningText = GameObject.FindWithTag("Warning")?.GetComponent<TextMeshProUGUI>();
+        
+        // Inicializa o AudioSource
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Fire()
     {
         if (_currentMagazineAmmo == 0) return;
-
+        
         IsReloading = false; // Cancela o reload
+        _audioSource.pitch = 1.0f;
+        _audioSource.volume = 0.5f;
+        _audioSource.PlayOneShot(pistolFire);
     
         Vector2 direction;
 
@@ -76,6 +87,12 @@ public class Pistol : MonoBehaviour
         
         IsReloading = true;
         slideBarObject.SetActive(true); // Ativa a barra de progresso
+        
+        // Ajusta o pitch para um som mais lento
+        _audioSource.pitch = 0.6f; 
+        _audioSource.volume = 0.5f;
+        // Toca o som de recarregar
+        _audioSource.PlayOneShot(pistolReload);
 
         float elapsed = 0f;
 
@@ -84,6 +101,7 @@ public class Pistol : MonoBehaviour
             if (!IsReloading)
             {
                 // Sai do reload sem completar
+                _audioSource.volume = 0;
                 slideBarObject.SetActive(false); // Esconde a barra
                 yield break;
             }
@@ -92,6 +110,8 @@ public class Pistol : MonoBehaviour
             _reloadBar.value = elapsed / reloadTime; // Atualiza a barra de progresso
             yield return null; // Espera o próximo frame
         }
+        // Reseta o pitch para evitar que outros sons sejam afetados
+        _audioSource.pitch = 1.0f;
 
         // Completa o reload
         if (_currentAmmo + _currentMagazineAmmo < maxMagazineAmmo)
