@@ -7,11 +7,8 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     TextMeshProUGUI _buttonText;
     [SerializeField] Color normalColor = Color.white;
     [SerializeField] Color hoverColor = Color.yellow;
-
-
+    
     [SerializeField] AudioClip buttonHover;
-
-
     AudioSource _audioSource;
 
     void Awake()
