@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
     void OnFire(InputValue value)
     {
         if (!HasWeapon) return;
-
+        if (Time.timeScale == 0) return;
         _isRunning = false;
 
         Weapon.Fire();
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
     void OnReload(InputValue value)
     {
         if (!HasWeapon) return;
-
+        if (Time.timeScale == 0) return;
         _isRunning = false; // Cancela a corrida quando carregar
 
         StartCoroutine(Weapon.IEReload());
