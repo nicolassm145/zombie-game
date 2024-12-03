@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     // Sons do Player
     AudioSource _audioSource; 
     [SerializeField] AudioClip footStepClip;
+    [SerializeField] AudioClip damageClip;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -106,7 +108,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
-
+        _audioSource.PlayOneShot(damageClip);
+        
         StartCoroutine(DamagePlayer(0.125f));
         health -= amount; 
         UpdateHealthUI();

@@ -33,10 +33,9 @@ public class GameManager : MonoBehaviour
     {
         if (_isPaused)
         {
-            if (configMenuUI != null && configMenuUI.activeSelf)
+            if (configMenuUI.activeSelf)
                  BackToPauseUI();
             else
-                
                 ResumeGame();
         }
         else
@@ -99,19 +98,15 @@ public class GameManager : MonoBehaviour
     public void OpenConfigUI()
     {
         if (pauseMenuUI != null)
-            pauseMenuUI.SetActive(false); // Desativa o PauseUI
+            pauseMenuUI.SetActive(false); 
 
         if (configMenuUI != null)
-            configMenuUI.SetActive(true); // Ativa o ConfigUI
+            configMenuUI.SetActive(true); 
     }
     
     public void BackToPauseUI()
     {
-        
-        if (configMenuUI != null)
-            configMenuUI.SetActive(false);
-
-        if (pauseMenuUI != null)
-            pauseMenuUI.SetActive(true);
+        configMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 }
