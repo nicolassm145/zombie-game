@@ -3,17 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    bool _isPaused = false;
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject configMenuUI;
     [SerializeField] GameObject[] uiElementsToDisable;
     
-    [SerializeField] AudioSource backgroundMusic; // Música de fundo
-    [SerializeField] AudioClip pauseSound;        // Som ao pausar
-    [SerializeField] AudioClip resumeSound;       // Som ao retomar
+    [SerializeField] AudioSource backgroundMusic; 
+    [SerializeField] AudioClip pauseSound;        
+    [SerializeField] AudioClip resumeSound;       
     
     AudioSource sfxPlayer;
-
+    bool _isPaused = false;
     void Start()
     {
         if (pauseMenuUI != null) // Força a sempre começar o jogo desligado.
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
         }
         else
             PauseGame();
-        
     }
 
     public void PauseGame()

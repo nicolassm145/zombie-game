@@ -50,13 +50,13 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (Time.time - lastDamageTime >= damageCooldown)
+            if (Time.deltaTime - lastDamageTime >= damageCooldown)
             {
                 Player playerScript = collision.GetComponent<Player>();
                 if (playerScript != null)
                 {
                     playerScript.TakeDamage(1); 
-                    lastDamageTime = Time.time; 
+                    lastDamageTime = Time.deltaTime; 
                 }
             }
         }
@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("bullet"))
         {
+            //_audioSource.PlayOneShot(zombieHitSound);
             life -= 10; 
             Destroy(collision.gameObject);
             StartCoroutine(DamageZombie(0.1f));
@@ -82,7 +83,6 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator DamageZombie(float duration)
     {
-        _audioSource.PlayOneShot(zombieHitSound);
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = Color.black;
@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
-                int moneyReward = Random.Range(5, 25); 
+                int moneyReward = Random.Range(5, 30); 
                 playerScript.AddMoney(moneyReward);
             }
         }

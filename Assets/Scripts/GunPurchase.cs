@@ -16,7 +16,7 @@ public class GunPurchase : MonoBehaviour
     {
         _costText = GameObject.FindWithTag("Warning").GetComponent<TextMeshProUGUI>();
     }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
