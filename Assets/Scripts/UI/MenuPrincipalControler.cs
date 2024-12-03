@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipalController : MonoBehaviour
 {
     AudioSource _audioSource;
-    [SerializeField] AudioClip buttonClickClip; // Referência ao som de clique
-    [SerializeField] float sceneChangeDelay = 0.5f; // Delay para troca de cena
+    [SerializeField] AudioClip buttonClickClip; 
+    [SerializeField] float sceneChangeDelay = 0.5f; 
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>(); // Obtém o AudioSource no mesmo GameObject
+        _audioSource = GetComponent<AudioSource>(); 
 
         if (_audioSource != null && !_audioSource.isPlaying)
         {
