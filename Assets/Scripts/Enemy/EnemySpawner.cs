@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] AudioClip spawnClip;
+    [SerializeField] AudioClip destroyedClip;
+    AudioSource audioSource;
+    
     TextMeshProUGUI roundsText;
     
     public GameObject[] pos; 
@@ -21,6 +25,8 @@ public class EnemySpawner : MonoBehaviour
         time = 0; 
         SetupRound();
         roundsText = GameObject.FindWithTag("RoundInfo").GetComponent<TextMeshProUGUI>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         UpdateGameInfo();
     }
 
@@ -44,6 +50,7 @@ public class EnemySpawner : MonoBehaviour
             currentEnemies++; 
             spawnedZombies++; 
             time = 0; 
+            audioSource.PlayOneShot(spawnClip);
             UpdateGameInfo();
         }
         if (spawnedZombies == zombiesToSpawn && currentEnemies == 0)
@@ -69,6 +76,7 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDestroyed()
     {
         currentEnemies = Mathf.Max(0, currentEnemies - 1);
+        audioSource.PlayOneShot(destroyedClip);
         UpdateGameInfo();
     }
     void UpdateGameInfo()

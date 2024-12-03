@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     // Sons do Player
     AudioSource _audioSource; 
     [SerializeField] AudioClip footStepClip;
+    [SerializeField] AudioClip damageClip;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -106,7 +108,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
-
+        _audioSource.PlayOneShot(damageClip);
+        
         StartCoroutine(DamagePlayer(0.125f));
         health -= amount; 
         UpdateHealthUI();
@@ -187,7 +190,7 @@ public class Player : MonoBehaviour
     void OnFire(InputValue value)
     {
         if (!HasWeapon) return;
-
+        if (Time.timeScale == 0) return;
         _isRunning = false;
 
         Weapon.Fire();
@@ -201,7 +204,7 @@ public class Player : MonoBehaviour
     void OnReload(InputValue value)
     {
         if (!HasWeapon) return;
-
+        if (Time.timeScale == 0) return;
         _isRunning = false; // Cancela a corrida quando carregar
 
         StartCoroutine(Weapon.IEReload());

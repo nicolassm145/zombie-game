@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    AudioSource _audioSource; 
+    [SerializeField] AudioClip zombieHitSound;
+    
     NavMeshAgent agent; 
     GameObject player; 
     [SerializeField] int life; 
@@ -20,7 +23,7 @@ public class Enemy : MonoBehaviour
     { 
         player = GameObject.Find("Player"); 
         agent = GetComponent<NavMeshAgent>(); 
-        
+        _audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         
@@ -79,6 +82,7 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator DamageZombie(float duration)
     {
+        _audioSource.PlayOneShot(zombieHitSound);
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = Color.black;
