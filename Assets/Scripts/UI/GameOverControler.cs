@@ -37,7 +37,7 @@ public class GameOverControler : MonoBehaviour
     {
         if (_audioSource != null && buttonClickClip != null)
         {
-            _audioSource.PlayOneShot(buttonClickClip); // Reproduz o som de clique
+            _audioSource.PlayOneShot(buttonClickClip); 
         }
     }
     
@@ -45,7 +45,7 @@ public class GameOverControler : MonoBehaviour
     {
         if (_audioSource != null)
             _audioSource.Stop();
-        PlayButtonClickSound(); // Toca o som ao clicar
+        PlayButtonClickSound(); 
         StartCoroutine(ChangeSceneWithDelay("MainScene"));
     }
     
@@ -59,9 +59,9 @@ public class GameOverControler : MonoBehaviour
     private IEnumerator QuitGameWithDelay()
     {
         _audioSource.Stop();
-        yield return new WaitForSeconds(sceneChangeDelay); // Espera o tempo de delay
+        yield return new WaitForSeconds(sceneChangeDelay); 
         #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false; // Para parar o jogo no editor
+            UnityEditor.EditorApplication.isPlaying = false; 
         #else
             Application.Quit(); // Para sair do jogo no build
         #endif

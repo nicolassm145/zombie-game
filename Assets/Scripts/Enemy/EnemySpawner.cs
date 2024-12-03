@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] AudioClip destroyedClip;
     AudioSource audioSource;
     
+    public Player player; 
+    [SerializeField] Enemy enemyPrefab;
     TextMeshProUGUI roundsText;
     
     public GameObject[] pos; 
@@ -26,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         SetupRound();
         roundsText = GameObject.FindWithTag("RoundInfo").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
-        audioSource = gameObject.AddComponent<AudioSource>();
+        
         UpdateGameInfo();
     }
 
@@ -37,16 +39,11 @@ public class EnemySpawner : MonoBehaviour
         if (time >= 1.5f && spawnedZombies < zombiesToSpawn && currentEnemies < maxEnemies)
         {
             int spawn = Random.Range(0, pos.Length); 
-            GameObject newEnemy = Instantiate(enemy, pos[spawn].transform.position, Quaternion.identity);
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            if (round == 1)
-            {
-                enemyScript.SetLife(30); 
-            }
-            else
-            {
-                enemyScript.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2)));  
-            }
+            //GameObject newEnemy = Instantiate(enemy, pos[spawn].transform.position, Quaternion.identity);
+            //Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            //enemyScript.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2))); 
+            Enemy newEnemy = Instantiate(enemyPrefab, pos[spawn].transform.position, Quaternion.identity);
+            newEnemy.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2)));
             currentEnemies++; 
             spawnedZombies++; 
             time = 0; 
@@ -69,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         zombiesToSpawn = baseZombies + (round - 1) * 5; 
         maxEnemies = Mathf.RoundToInt(10 * Mathf.Log(round + 1, 2)); 
         spawnedZombies = 0;
-        Player player = FindObjectOfType<Player>();
+        //Player player = FindObjectOfType<Player>();
         player.Round = round;
     }
     
