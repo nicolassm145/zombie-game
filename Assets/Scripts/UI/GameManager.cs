@@ -32,15 +32,21 @@ public class GameManager : MonoBehaviour
     public void OnPause()
     {
         if (_isPaused)
-            ResumeGame();
+        {
+            if (configMenuUI != null && configMenuUI.activeSelf)
+                 BackToPauseUI();
+            else
+                
+                ResumeGame();
+        }
         else
             PauseGame();
+        
     }
 
     public void PauseGame()
     {
         _isPaused = true;
-        configMenuUI.SetActive(false);
         Time.timeScale = 0; 
         
         if (backgroundMusic != null)
@@ -60,7 +66,6 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         _isPaused = false;
-        configMenuUI.SetActive(false);
         Time.timeScale = 1; 
         
         if (backgroundMusic != null)
@@ -87,16 +92,8 @@ public class GameManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        if (configMenuUI.activeSelf) // Verifica se o ConfigUI está ativo
-        {
-            //configMenuUI.SetActive(false); // Desativa o ConfigUI
-            PauseGame(); // Retorna ao PauseUI
-        }
-        else
-        {
-            Time.timeScale = 1; // Restaura o tempo do jogo
-            SceneManager.LoadScene("MenuPrincipal"); // Vai para o menu principal
-        }
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void OpenConfigUI()
