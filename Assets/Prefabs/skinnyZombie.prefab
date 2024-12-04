@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6791327813218336938
+--- !u!1 &8066868934745955303
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1179812310941574513}
-  - component: {fileID: 2087379699432593058}
-  - component: {fileID: 1473045935760774443}
-  - component: {fileID: 8676575396721476979}
-  - component: {fileID: -254010814741433792}
-  - component: {fileID: 6270406733915762510}
-  - component: {fileID: -8384688593661448477}
-  - component: {fileID: 8193606659908256258}
+  - component: {fileID: 136608675591303863}
+  - component: {fileID: 2912096904455232509}
+  - component: {fileID: 1079016930929780172}
+  - component: {fileID: 7852413348948627527}
+  - component: {fileID: 45916542267390151}
+  - component: {fileID: 3491786851044176773}
+  - component: {fileID: 2189424880939813407}
+  - component: {fileID: 6355506583925365000}
   m_Layer: 11
-  m_Name: Enemy
+  m_Name: skinnyZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1179812310941574513
+--- !u!4 &136608675591303863
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.24, y: -2.22, z: 0}
+  m_LocalPosition: {x: -11.01, y: -2.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2087379699432593058
+--- !u!212 &2912096904455232509
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: -1901008611
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -988867812, guid: 2d4780d7859c6ad42b6ea634282bc673, type: 3}
+  m_Sprite: {fileID: -1160173942, guid: c80aed9f5028401428aa4457406caddf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,13 +90,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1473045935760774443
+--- !u!61 &1079016930929780172
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -122,26 +122,26 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.008692265, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.625, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.65232944, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8676575396721476979
+--- !u!114 &7852413348948627527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acce4d713e51d4348ad9354a3c76667c, type: 3}
@@ -151,14 +151,14 @@ MonoBehaviour:
   life: 50
   damageCooldown: 0.5
   poofVFX: {fileID: 7223346616668781506, guid: 7b97ab8a8f8147d41a54cbc6201514f5, type: 3}
---- !u!50 &-254010814741433792
+--- !u!50 &45916542267390151
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -178,14 +178,14 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &6270406733915762510
+--- !u!95 &3491786851044176773
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: df665a01bf851c447a1cad30c560d316, type: 2}
@@ -199,13 +199,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &-8384688593661448477
+--- !u!195 &2189424880939813407
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -221,13 +221,13 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!82 &8193606659908256258
+--- !u!82 &6355506583925365000
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6791327813218336938}
+  m_GameObject: {fileID: 8066868934745955303}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7403739186667421962, guid: 3d9d1ac1e5a047047ae606dd62937984, type: 2}
