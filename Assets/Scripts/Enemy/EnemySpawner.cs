@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] AudioClip spawnClip;
     [SerializeField] AudioClip destroyedClip;
+    [SerializeField] AudioClip roundChangeClip;
     AudioSource audioSource;
 
     public Player player; 
@@ -13,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     TextMeshProUGUI roundsText;
 
     [SerializeField] SpawnArea[] spawnAreas; // Áreas de spawn
+    bool isTransitioning = false;
     float time; 
     int baseZombies = 10;
     int round = 1;
@@ -42,10 +45,41 @@ public class EnemySpawner : MonoBehaviour
         }
         if (spawnedZombies == zombiesToSpawn && currentEnemies == 0)
         {
-            NextRound();
+            StartCoroutine(NextRoundSequence());
+            
         }
     }
    
+    IEnumerator NextRoundSequence()
+    {
+        if (isTransitioning) yield break; // Não executar se já estiver em transição
+        isTransitioning = true;
+        
+        // Tocar som de mudança de round
+        audioSource.PlayOneShot(roundChangeClip);
+
+        // Piscar o texto
+        yield return StartCoroutine(FlashRoundText());
+        
+        round++;
+        SetupRound();
+        UpdateGameInfo();
+        
+        isTransitioning = false;
+    }
+   
+    IEnumerator FlashRoundText()
+    {
+        Color originalColor = roundsText.color;
+        for (int i = 0; i < 5; i++) 
+        {
+            roundsText.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            roundsText.color = Color.black;
+            yield return new WaitForSeconds(0.2f);
+        }
+        roundsText.color = originalColor; 
+    }
     void NextRound()
     {
         round++; 
@@ -73,6 +107,7 @@ public class EnemySpawner : MonoBehaviour
         
         currentEnemies++;
         spawnedZombies++;
+        print($"Spawned Zombie: {spawnedZombies}/{zombiesToSpawn}, Current Enemies: {currentEnemies}/{maxEnemies}");
         audioSource.PlayOneShot(spawnClip);
         UpdateGameInfo();
     }
@@ -114,6 +149,7 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDestroyed()
     {
         currentEnemies = Mathf.Max(0, currentEnemies - 1);
+        print($"Enemy destroyed. Current enemies: {currentEnemies}");
         audioSource.PlayOneShot(destroyedClip);
         UpdateGameInfo();
     }
