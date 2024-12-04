@@ -50,8 +50,8 @@ MonoBehaviour:
   reloadTime: 2
   maxAmmo: 120
   maxMagazineAmmo: 30
-  pistolFire: {fileID: 8300000, guid: 3a3fffe915ce5fb4fb3a3a932175469e, type: 3}
-  pistolReload: {fileID: 8300000, guid: a95e007395738194aadff829ecc53fab, type: 3}
+  fireSound: {fileID: 8300000, guid: 3a3fffe915ce5fb4fb3a3a932175469e, type: 3}
+  reloadSound: {fileID: 8300000, guid: a95e007395738194aadff829ecc53fab, type: 3}
 --- !u!82 &3323228238978357508
 AudioSource:
   m_ObjectHideFlags: 0

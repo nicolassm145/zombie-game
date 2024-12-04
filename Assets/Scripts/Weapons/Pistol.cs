@@ -1,55 +1,15 @@
-using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
-public class Pistol : MonoBehaviour
+public class Pistol : Weapon
 {
-    // Bullet
-    public GameObject bullet;
-    public GameObject SpawnerBulletPos { get; set; }
-    
-    // Recarregar
-    [SerializeField] GameObject slideBarObject;
-    Slider _reloadBar;
-    public bool IsReloading { get; set; }
-    public float reloadTime = 3f;
-
-    // Munição
-    [SerializeField] int maxAmmo;
-    [SerializeField] int maxMagazineAmmo;
-    int _currentAmmo;
-    int _currentMagazineAmmo;
-    TextMeshProUGUI _ammoText;
-    TextMeshProUGUI _warningText;
-    
-    // Sons
-    [SerializeField] AudioClip pistolFire;
-    [SerializeField] AudioClip pistolReload; 
-    AudioSource _audioSource;
-    
-    void Start()
+    protected override void PerformFire()
     {
-        _reloadBar = slideBarObject.GetComponent<Slider>();
-        _ammoText = GameObject.FindWithTag("AmmoUI")?.GetComponent<TextMeshProUGUI>();
-        _warningText = GameObject.FindWithTag("Warning")?.GetComponent<TextMeshProUGUI>();
+        audioSource.pitch = 1.0f;
+        audioSource.volume = 0.5f;
+        audioSource.PlayOneShot(fireSound);
         
-        // Inicializa o AudioSource
-        _audioSource = GetComponent<AudioSource>();
-    }
-
-    public void Fire()
-    {
-        if (_currentMagazineAmmo == 0) return;
-        
-        IsReloading = false; // Cancela o reload
-        _audioSource.pitch = 1.0f;
-        _audioSource.volume = 0.5f;
-        _audioSource.PlayOneShot(pistolFire);
-    
         Vector2 direction;
 
         // Detecta se um controle está conectado e o analógico está sendo usado
@@ -75,25 +35,10 @@ public class Pistol : MonoBehaviour
         // Cria a bala e ajusta sua direção
         GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
         newBullet.transform.up = direction;
-
-        _currentMagazineAmmo--;
-        UpdateAmmoUI();
-        CheckAmmo();
     }
 
-    public IEnumerator IEReload()
+    protected override IEnumerator PerformReload()
     {
-        if (_currentMagazineAmmo == maxMagazineAmmo || _currentAmmo == 0) yield break;   // Não recarrega se estiver com munição cheia
-        
-        IsReloading = true;
-        slideBarObject.SetActive(true); // Ativa a barra de progresso
-        
-        // Ajusta o pitch para um som mais lento
-        _audioSource.pitch = 0.6f; 
-        _audioSource.volume = 0.5f;
-        // Toca o som de recarregar
-        _audioSource.PlayOneShot(pistolReload);
-
         float elapsed = 0f;
 
         while (elapsed < reloadTime)
@@ -101,96 +46,26 @@ public class Pistol : MonoBehaviour
             if (!IsReloading)
             {
                 // Sai do reload sem completar
-                _audioSource.volume = 0;
+                audioSource.volume = 0;
                 slideBarObject.SetActive(false); // Esconde a barra
                 yield break;
             }
             
             elapsed += Time.deltaTime;
-            _reloadBar.value = elapsed / reloadTime; // Atualiza a barra de progresso
+            reloadBar.value = elapsed / reloadTime; // Atualiza a barra de progresso
             yield return null; // Espera o próximo frame
         }
-        // Reseta o pitch para evitar que outros sons sejam afetados
-        _audioSource.pitch = 1.0f;
-
+        
         // Completa o reload
-        if (_currentAmmo + _currentMagazineAmmo < maxMagazineAmmo)
+        if (currentAmmo + currentMagazineAmmo < maxMagazineAmmo)
         {
-            _currentMagazineAmmo += _currentAmmo;
-            _currentAmmo = 0;
+            currentMagazineAmmo += currentAmmo;
+            currentAmmo = 0;
         }
         else
         {
-            _currentAmmo = _currentAmmo - maxMagazineAmmo + _currentMagazineAmmo;
-            _currentMagazineAmmo = maxMagazineAmmo;
+            currentAmmo = currentAmmo - maxMagazineAmmo + currentMagazineAmmo;
+            currentMagazineAmmo = maxMagazineAmmo;
         }
-
-        slideBarObject.SetActive(false); // Oculta a barra após o recarregamento
-        IsReloading = false;
-
-        UpdateAmmoUI();
-        CheckAmmo();
-    }
-    
-    public void BuyAmmo()
-    {
-        _currentAmmo = maxAmmo;
-        _currentMagazineAmmo = maxMagazineAmmo;
-        UpdateAmmoUI();
-        CheckAmmo();
-    }
-
-    private void UpdateAmmoUI()
-    {
-        // Atualize a UI de munição se existir
-        if (_ammoText)
-        {
-            _ammoText.text = $"{_currentMagazineAmmo}/{_currentAmmo}";
-        }
-    }
-
-    private void CheckAmmo()
-    {
-        if (_warningText == null) return;
-
-        string text = _warningText.text;
-
-        // Gerenciar a mensagem de recarregar
-        string reloadWarning = "Pressione [R] para recarregar\n";
-        if (_currentMagazineAmmo <= maxMagazineAmmo * 0.3f)
-        {
-            if (!text.Contains(reloadWarning))
-            {
-                text += reloadWarning; // Adiciona a mensagem de recarregar
-            }
-        }
-        else
-        {
-            int reloadStartIndex = text.IndexOf(reloadWarning);
-            if (reloadStartIndex != -1)
-            {
-                text = text.Remove(reloadStartIndex, reloadWarning.Length); // Remove a mensagem de recarregar
-            }
-        }
-
-        // Gerenciar a mensagem de munição acabando
-        string ammoWarning = "Munição acabando\n";
-        if (_currentAmmo <= maxMagazineAmmo)
-        {
-            if (!text.Contains(ammoWarning))
-            {
-                text += ammoWarning; // Adiciona a mensagem de munição acabando
-            }
-        }
-        else
-        {
-            int ammoStartIndex = text.IndexOf(ammoWarning);
-            if (ammoStartIndex != -1)
-            {
-                text = text.Remove(ammoStartIndex, ammoWarning.Length); // Remove a mensagem de munição acabando
-            }
-        }
-
-        _warningText.text = text;
     }
 }

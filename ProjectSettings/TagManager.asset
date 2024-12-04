@@ -12,6 +12,7 @@ TagManager:
   - RoundInfo
   - ReloadBar
   - Warning
+  - GunSlot
   layers:
   - Default
   - TransparentFX

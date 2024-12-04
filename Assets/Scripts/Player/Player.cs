@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     
     // Logica da arma
     public bool HasWeapon { get; set; } = false;
-    public Pistol Weapon { get; set; } = null;
+    public Weapon Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
     
     // Sons do Player
