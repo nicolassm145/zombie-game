@@ -1,20 +1,23 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunPurchase : MonoBehaviour
 {
     [SerializeField] int gunCost;
-    [SerializeField] GameObject gunImage;
-    TextMeshProUGUI _costText;
-
+    [SerializeField] Texture2D gunImage;
     [SerializeField] GameObject gunPrefab;
+    
+    TextMeshProUGUI _costText;
 
     bool _isPlayerInRange = false;
     Player _player;
+    private Image _gunSlot;
     
     void Start()
     {
         _costText = GameObject.FindWithTag("Warning").GetComponent<TextMeshProUGUI>();
+        _gunSlot = GameObject.FindWithTag("GunSlot").GetComponent<Image>();
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -56,11 +59,19 @@ public class GunPurchase : MonoBehaviour
         
         if (purchased)
         {
-            if (!_player.HasWeapon)
+            if (_player.Weapon != gunPrefab.GetComponent<Weapon>())
             {
-                gunImage.SetActive(true);
+                // Atribui a imagem ao slot na UI
+                _gunSlot.sprite = Sprite.Create(
+                    gunImage,
+                    new Rect(0, 0, gunImage.width, gunImage.height),
+                    new Vector2(0.5f, 0.5f)
+                );
+                _gunSlot.color = new Color(1f, 1f, 1f, 1f);
+                
+                // Player
                 _player.HasWeapon = true;
-                _player.Weapon = gunPrefab.GetComponent<Pistol>();
+                _player.Weapon = gunPrefab.GetComponent<Weapon>();
                 _player.Weapon.SpawnerBulletPos = _player.spawnerBulletPos;
             }
             _player.Weapon.BuyAmmo();

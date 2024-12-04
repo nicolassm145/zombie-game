@@ -144,7 +144,9 @@ MonoBehaviour:
   bullet: {fileID: 8687356271557371455, guid: 5a93dfd64e8d6524caadeab408f0d9cf, type: 3}
   slideBarObject: {fileID: 0}
   reloadTime: 0.5
-  maxAmmo: 8
-  maxMagazineAmmo: 32
-  pistolFire: {fileID: 0}
-  pistolReload: {fileID: 0}
+  maxAmmo: 48
+  maxMagazineAmmo: 8
+  fireSound: {fileID: 8300000, guid: 3a3fffe915ce5fb4fb3a3a932175469e, type: 3}
+  reloadSound: {fileID: 8300000, guid: a95e007395738194aadff829ecc53fab, type: 3}
+  bulletsPerShot: 5
+  spreadAngle: 30
