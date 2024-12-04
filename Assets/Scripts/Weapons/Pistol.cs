@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-
 public class Pistol : MonoBehaviour
 {
     // Bullet
