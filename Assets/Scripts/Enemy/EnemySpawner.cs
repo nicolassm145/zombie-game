@@ -8,7 +8,8 @@ public class EnemySpawner : MonoBehaviour
     AudioSource audioSource;
 
     public Player player; 
-    [SerializeField] Enemy enemyPrefab;
+    [SerializeField] Enemy[] enemyPrefabs; // Array de prefabs de zumbis
+    [SerializeField] float[] spawnChances; // Porcentagens para cada tipo de zumbi
     TextMeshProUGUI roundsText;
 
     [SerializeField] SpawnArea[] spawnAreas; // Áreas de spawn
@@ -65,13 +66,32 @@ public class EnemySpawner : MonoBehaviour
 
         int spawnIndex = Random.Range(0, activeArea.SpawnPositions.Length);
         Vector3 spawnPosition = activeArea.SpawnPositions[spawnIndex].position;
-
-        Enemy newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    
+        Enemy enemyToSpawn = GetRandomEnemyPrefab();
+        Enemy newEnemy = Instantiate(enemyToSpawn , spawnPosition, Quaternion.identity);
         newEnemy.SetLife(Mathf.RoundToInt(30 + 10 * Mathf.Log(round, 2)));
+        
         currentEnemies++;
         spawnedZombies++;
         audioSource.PlayOneShot(spawnClip);
         UpdateGameInfo();
+    }
+    
+    Enemy GetRandomEnemyPrefab()
+    {
+        float randomValue = Random.Range(0f, 100f);
+        float cumulativeChance = 0f;
+
+        for (int i = 0; i < enemyPrefabs.Length; i++)
+        {
+            cumulativeChance += spawnChances[i];
+            if (randomValue <= cumulativeChance)
+            {
+                return enemyPrefabs[i];
+            }
+        }
+
+        return enemyPrefabs[0]; // Caso nenhuma condição seja atendida, retorna o zumbi padrão.
     }
 
     SpawnArea GetActiveArea()
