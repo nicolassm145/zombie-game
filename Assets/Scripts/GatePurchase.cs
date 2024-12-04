@@ -7,16 +7,19 @@ using UnityEngine.AI;
 
 public class GatePurchase : MonoBehaviour
 {
-    [SerializeField] private int gateCost;
-    private TextMeshProUGUI _costText;
-    private bool _isPlayerInRange;
+    [SerializeField] int gateCost;
+    [SerializeField] private AudioClip doorUnlocked;
+    AudioSource _audioSource;
+    TextMeshProUGUI _costText;
+    bool _isPlayerInRange;
     
-    private Player _player;
+    Player _player;
     
     // Start is called before the first frame update
     void Start()
     {
         _costText = GameObject.FindWithTag("Warning").GetComponent<TextMeshProUGUI>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,20 +54,27 @@ public class GatePurchase : MonoBehaviour
     void OpenGate()
     {
         if (!_isPlayerInRange) return;
-        
+    
         bool purchased = _player.SpendMoney(gateCost);
 
         if (purchased)
         {
-            // Destruir o objeto pai
+            // Toca o som de portão destrancado
+            if (doorUnlocked != null && _audioSource != null)
+            {
+                AudioSource.PlayClipAtPoint(doorUnlocked, transform.position); // Reproduz o som em um objeto temporário na posição atual
+            }
+        
+            // Destruir o objeto pai após um pequeno atraso para garantir que o som seja tocado
+            float delay = doorUnlocked != null ? doorUnlocked.length : 0f;
+
             if (transform.parent != null)
             {
-                Destroy(transform.parent.gameObject);
+                Destroy(transform.parent.gameObject, delay);
             }
             else
             {
-                // Caso o objeto atual não tenha um pai, destrua ele mesmo
-                Destroy(gameObject);
+                Destroy(gameObject, delay);
             }
         }
         else
@@ -72,4 +82,5 @@ public class GatePurchase : MonoBehaviour
             print("Dinheiro insuficiente para abrir portão!");
         }
     }
+
 }
