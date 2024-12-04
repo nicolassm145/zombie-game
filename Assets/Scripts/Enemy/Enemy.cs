@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour
     AudioSource _audioSource; 
     [SerializeField] AudioClip zombieHitSound;
     
+    [SerializeField] GameObject moneyDropPrefab;
+    [SerializeField] GameObject ammoDropPrefab;
+
+    
     NavMeshAgent agent; 
     GameObject player; 
     [SerializeField] int life; 
@@ -104,16 +108,40 @@ public class Enemy : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
-                int moneyReward = Random.Range(5, 30); 
-                playerScript.AddMoney(moneyReward);
+               // int moneyReward = Random.Range(5, 30); 
+                //playerScript.AddMoney(moneyReward);
             }
         }
     }
     
     void Die()
     {
+        // Cria o efeito de "poof"
         GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
-        Destroy(poofGO, 1.0f); 
-        Destroy(gameObject, 0.1f);
+        Destroy(poofGO, 1.0f);
+
+        // Sempre droppa dinheiro
+        GameObject moneyDrop = Instantiate(moneyDropPrefab, transform.position, Quaternion.identity);
+        ItemDrop moneyPickup = moneyDrop.GetComponent<ItemDrop>();
+        if (moneyPickup != null)
+        {
+            moneyPickup.value = Random.Range(5, 30); // Valor aleatório de dinheiro
+        }
+
+        // Chance de 5% para droppar munição também
+        if (Random.value <= 0.01f) // 1% de probabilidade
+        {
+            GameObject ammoDrop = Instantiate(ammoDropPrefab, transform.position, Quaternion.identity);
+            ItemDrop ammoPickup = ammoDrop.GetComponent<ItemDrop>();
+            if (ammoPickup != null)
+            {
+                ammoPickup.value = 15; 
+            }
+        }
+
+        // Remove o zumbi do jogo
+        Destroy(gameObject);
     }
+
+
 }
