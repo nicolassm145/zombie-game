@@ -91,6 +91,8 @@ public class EnemySpawner : MonoBehaviour
         maxEnemies = Mathf.RoundToInt(10 * Mathf.Log(round + 1, 2)); 
         spawnedZombies = 0;
         player.Round = round;
+        if (round>1)
+            player.AddMoney(100*round);
     }
     
     void SpawnEnemyInActiveArea()
