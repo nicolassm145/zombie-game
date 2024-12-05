@@ -1,14 +1,26 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [System.Serializable]
+    public class DropItem
+    {
+        public GameObject prefab; // O prefab do item
+        public float dropChance;  // Probabilidade de drop (em percentual, ex.: 5% = 0.05)
+        public int minValue;      // Valor mínimo (ex.: dinheiro ou quantidade de munição)
+        public int maxValue;      // Valor máximo
+    }
+    
+    [SerializeField] List<DropItem> possibleDrops; // Lista de itens possíveis
+
     AudioSource _audioSource; 
     [SerializeField] AudioClip zombieHitSound;
     
-    [SerializeField] GameObject moneyDropPrefab;
-    [SerializeField] GameObject ammoDropPrefab;
+    //[SerializeField] GameObject moneyDropPrefab;
+    //[SerializeField] GameObject ammoDropPrefab;
 
     
     NavMeshAgent agent; 
@@ -116,32 +128,30 @@ public class Enemy : MonoBehaviour
     
     void Die()
     {
-        // Cria o efeito de "poof"
+        // Cria o efeito visual de morte
         GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
         Destroy(poofGO, 1.0f);
 
-        // Sempre droppa dinheiro
-        GameObject moneyDrop = Instantiate(moneyDropPrefab, transform.position, Quaternion.identity);
-        ItemDrop moneyPickup = moneyDrop.GetComponent<ItemDrop>();
-        if (moneyPickup != null)
+        // Itera sobre os possíveis drops
+        foreach (DropItem drop in possibleDrops)
         {
-            moneyPickup.value = Random.Range(5, 30); // Valor aleatório de dinheiro
-        }
-
-        // Chance de 5% para droppar munição também
-        if (Random.value <= 0.01f) // 1% de probabilidade
-        {
-            GameObject ammoDrop = Instantiate(ammoDropPrefab, transform.position, Quaternion.identity);
-            ItemDrop ammoPickup = ammoDrop.GetComponent<ItemDrop>();
-            if (ammoPickup != null)
+            if (Random.value <= drop.dropChance) // Verifica se o item deve ser droppado
             {
-                ammoPickup.value = 15; 
+                GameObject itemDrop = Instantiate(drop.prefab, transform.position, Quaternion.identity);
+
+                // Configura o valor do item, se aplicável
+                ItemDrop pickup = itemDrop.GetComponent<ItemDrop>();
+                if (pickup != null)
+                {
+                    pickup.value = Random.Range(drop.minValue, drop.maxValue + 1); // Define o valor/quantidade
+                }
             }
         }
 
         // Remove o zumbi do jogo
         Destroy(gameObject);
     }
+
 
 
 }
