@@ -51,6 +51,7 @@ public class Shotgun : Weapon
             // Cria a bala e ajusta sua direção
             GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
             newBullet.transform.up = rotatedDirection; // Define a direção da bala
+            newBullet.GetComponent<Bullet>().Damage = damage;
         }
     }
 

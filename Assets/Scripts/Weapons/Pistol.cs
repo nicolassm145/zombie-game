@@ -35,6 +35,7 @@ public class Pistol : Weapon
         // Cria a bala e ajusta sua direção
         GameObject newBullet = Instantiate(bullet, SpawnerBulletPos.transform.position, Quaternion.identity);
         newBullet.transform.up = direction;
+        newBullet.GetComponent<Bullet>().Damage = damage;
     }
 
     protected override IEnumerator PerformReload()
