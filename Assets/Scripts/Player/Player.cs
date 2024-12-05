@@ -35,7 +35,11 @@ public class Player : MonoBehaviour
     private bool _isRunning;
     bool isInvincible = false;
     public event Action OnInteractAction; 
-    
+    float timeSinceLastDamage = 0f;
+    Coroutine regenerationCoroutine = null;
+    [SerializeField] float regenerationTimer = 10f;
+    [SerializeField] float regenerationDuration = 2f;
+
     // Logica da arma
     public bool HasWeapon { get; set; } = false;
     public Weapon Weapon { get; set; } = null;
@@ -105,6 +109,7 @@ public class Player : MonoBehaviour
         UpdateMoneyUI();
     }
     
+    
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
@@ -113,7 +118,15 @@ public class Player : MonoBehaviour
         StartCoroutine(DamagePlayer(0.125f));
         health -= amount; 
         UpdateHealthUI();
-
+        
+        if (regenerationCoroutine != null)
+        {
+            StopCoroutine(regenerationCoroutine);
+            regenerationCoroutine = null; // Libera a referência ao Coroutine
+        }
+        
+        timeSinceLastDamage = 0f;
+        
         if (health <= 0)
         {
             PlayerPrefs.SetFloat("TimeAlive", timeAlive);
@@ -214,10 +227,33 @@ public class Player : MonoBehaviour
     {
         gameManager.OnPause();
     }
-    
+    IEnumerator RegenerateHealth()
+    {
+        while (health < 5) // Regenera até o máximo de saúde
+        {
+            health++; // Incrementa 1 ponto de vida
+            UpdateHealthUI();
+            yield return new WaitForSeconds(regenerationDuration); 
+        }
+
+        regenerationCoroutine = null; // Libera a referência ao Coroutine ao terminar
+    }
+
+
     void Update()
     {
         MovePlayer();
         timeAlive += Time.deltaTime;
+
+        if (health < 5) // Só tenta regenerar se a saúde não estiver completa
+        {
+            timeSinceLastDamage += Time.deltaTime;
+
+            if (timeSinceLastDamage >= regenerationTimer && regenerationCoroutine == null && !isInvincible)
+            {
+                regenerationCoroutine = StartCoroutine(RegenerateHealth());
+            }
+        }
     }
+
 }
