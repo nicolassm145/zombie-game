@@ -147,6 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acce4d713e51d4348ad9354a3c76667c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleDrops:
+  - prefab: {fileID: 5326551516595100847, guid: 8f60dd9415ded7248a5e8562a2112289, type: 3}
+    dropChance: 0.1
+    minValue: 5
+    maxValue: 10
+  - prefab: {fileID: 5866202324696919895, guid: fc3e5e9ccc9256d4684ffc46ac7fbce8, type: 3}
+    dropChance: 1
+    minValue: 5
+    maxValue: 35
   zombieHitSound: {fileID: 8300000, guid: 3bf5657cacb4ed449be11bb470ee1adf, type: 3}
   life: 50
   damageCooldown: 0.5

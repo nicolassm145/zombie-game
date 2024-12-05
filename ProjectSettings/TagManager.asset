@@ -15,6 +15,7 @@ TagManager:
   - GunSlot
   - Enemy
   - WeaponLevel
+  - ItemInfo
   layers:
   - Default
   - TransparentFX

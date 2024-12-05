@@ -1,11 +1,27 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [System.Serializable]
+    public class DropItem
+    {
+        public GameObject prefab; // O prefab do item
+        public float dropChance;  // Probabilidade de drop (em percentual, ex.: 5% = 0.05)
+        public int minValue;      // Valor mínimo (ex.: dinheiro ou quantidade de munição)
+        public int maxValue;      // Valor máximo
+    }
+    
+    [SerializeField] List<DropItem> possibleDrops; // Lista de itens possíveis
+
     AudioSource _audioSource; 
     [SerializeField] AudioClip zombieHitSound;
+    
+    //[SerializeField] GameObject moneyDropPrefab;
+    //[SerializeField] GameObject ammoDropPrefab;
+
     
     NavMeshAgent agent; 
     GameObject player; 
@@ -102,16 +118,38 @@ public class Enemy : MonoBehaviour
             if (playerScript != null)
             {
                 playerScript.ZombieKilled();
-                int moneyReward = Random.Range(5, 30); 
-                playerScript.AddMoney(moneyReward);
+               // int moneyReward = Random.Range(5, 30); 
+                //playerScript.AddMoney(moneyReward);
             }
         }
     }
     
     void Die()
     {
+        // Cria o efeito visual de morte
         GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
-        Destroy(poofGO, 1.0f); 
-        Destroy(gameObject, 0.1f);
+        Destroy(poofGO, 1.0f);
+
+        // Itera sobre os possíveis drops
+        foreach (DropItem drop in possibleDrops)
+        {
+            if (Random.value <= drop.dropChance) // Verifica se o item deve ser droppado
+            {
+                GameObject itemDrop = Instantiate(drop.prefab, transform.position, Quaternion.identity);
+
+                // Configura o valor do item, se aplicável
+                ItemDrop pickup = itemDrop.GetComponent<ItemDrop>();
+                if (pickup != null)
+                {
+                    pickup.value = Random.Range(drop.minValue, drop.maxValue + 1); // Define o valor/quantidade
+                }
+            }
+        }
+
+        // Remove o zumbi do jogo
+        Destroy(gameObject);
     }
+
+
+
 }
