@@ -13,6 +13,8 @@ TagManager:
   - ReloadBar
   - Warning
   - GunSlot
+  - Enemy
+  - WeaponLevel
   layers:
   - Default
   - TransparentFX

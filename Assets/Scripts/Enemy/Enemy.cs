@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     
     NavMeshAgent agent; 
     GameObject player; 
-    [SerializeField] int life; 
+    [SerializeField] public int life; 
     
     SpriteRenderer spriteRenderer;
     Color originalColor;
@@ -64,14 +64,6 @@ public class Enemy : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("bullet"))
-        {
-            //_audioSource.PlayOneShot(zombieHitSound);
-            life -= 10; 
-            Destroy(collision.gameObject);
-            StartCoroutine(DamageZombie(0.1f));
-        }
-
         if (collision.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();
@@ -81,7 +73,13 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    IEnumerator DamageZombie(float duration)
+
+    public void StartDamageZombie()
+    {
+        StartCoroutine(DamageZombie(0.1f));
+    }
+    
+    public IEnumerator DamageZombie(float duration)
     {
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(duration);
