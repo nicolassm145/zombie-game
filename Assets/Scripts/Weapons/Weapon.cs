@@ -16,8 +16,9 @@ public abstract class Weapon : MonoBehaviour
     public float reloadTime;
 
     // Munição
-    [SerializeField] protected int maxAmmo;
-    [SerializeField] protected int maxMagazineAmmo;
+    [SerializeField] public int damage = 10;
+    [SerializeField] public int maxAmmo;
+    [SerializeField] public int maxMagazineAmmo;
     protected int currentAmmo;
     protected int currentMagazineAmmo;
     protected TextMeshProUGUI ammoText;
@@ -27,6 +28,10 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected AudioClip fireSound;
     [SerializeField] protected AudioClip reloadSound;
     protected AudioSource audioSource;
+    
+    // Upgrade
+    public int NextUpgradeLevel { get; set; } = 1;
+    [SerializeField] public int upgradeBaseCost = 600;
 
     protected virtual void Start()
     {
