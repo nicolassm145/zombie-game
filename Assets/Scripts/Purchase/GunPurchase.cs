@@ -71,10 +71,8 @@ public class GunPurchase : MonoBehaviour
                 );
                 _gunSlot.color = new Color(1f, 1f, 1f, 1f);
                 
-                // Player
-                _player.HasWeapon = true;
-                _player.Weapon = gunPrefab.GetComponent<Weapon>();
-                _player.Weapon.SpawnerBulletPos = _player.spawnerBulletPos;
+                // Equipar a arma no jogador
+                _player.EquipWeapon(gunPrefab);
 
                 _weaponLevel.text = "";
             }

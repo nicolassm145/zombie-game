@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     public bool HasWeapon { get; set; } = false;
     public Weapon Weapon { get; set; } = null;
     public GameObject spawnerBulletPos;
+    public Transform weaponAttachmentPoint;
     
     // Sons do Player
     AudioSource _audioSource; 
@@ -188,9 +189,63 @@ public class Player : MonoBehaviour
         return true;
     }
 
+    public void EquipWeapon(GameObject weaponPrefab)
+    {
+        if (weaponAttachmentPoint.childCount > 0)
+        {
+            // Remove a arma antiga se houver uma
+            foreach (Transform child in weaponAttachmentPoint)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
+        // Instanciar a nova arma no ponto de fixação
+        weaponAttachmentPoint.rotation = Quaternion.identity; // Zera a rotação para novas armas
+        GameObject weapon = Instantiate(weaponPrefab, weaponAttachmentPoint.position, Quaternion.identity);
+        weapon.transform.SetParent(weaponAttachmentPoint);
+        weapon.GetComponent<SpriteRenderer>().enabled = true;
+
+        HasWeapon = true;
+        Weapon = weapon.GetComponent<Weapon>();
+        Weapon.SpawnerBulletPos = spawnerBulletPos;
+    }
+
     void UpdateMoneyUI()
     {
         _moneyText.text = money.ToString();
+    }
+    
+    void RotateWeapon()
+    {
+        if (!HasWeapon || Weapon == null) return;
+
+        Vector2 direction;
+
+        // Detecta se um controle está conectado e o analógico está sendo usado
+        Gamepad gamepad = Gamepad.current;
+        if (gamepad == null || gamepad.rightStick.ReadValue().magnitude < 0.1f)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            direction = mousePosition - weaponAttachmentPoint.position;
+        }
+        else
+        {
+            // Controle por joystick
+            direction = new Vector2(Gamepad.current.rightStick.x.ReadValue(), Gamepad.current.rightStick.y.ReadValue());
+        }
+
+        // Se a direção for muito pequena (joystick inativo), evite rotacionar
+        if (direction.sqrMagnitude < 0.01f) return;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        weaponAttachmentPoint.rotation = Quaternion.Euler(0f, 0f, angle);
+    
+        // Inverte o sprite do player com base na direção
+        if (angle > 90 || angle < -90)
+            spriteRenderer.flipX = true;
+        else
+            spriteRenderer.flipX = false;
     }
 
     void OnRun(InputValue value)
@@ -243,6 +298,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        RotateWeapon();
         timeAlive += Time.deltaTime;
 
         if (health < 5) // Só tenta regenerar se a saúde não estiver completa
