@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
         UpdateMoneyUI();
     }
     
+    
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
