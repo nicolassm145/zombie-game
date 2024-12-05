@@ -9,7 +9,7 @@ public class GunPurchase : MonoBehaviour
     [SerializeField] GameObject gunPrefab;
     
     TextMeshProUGUI _costText;
-
+    public int UpgradeCost => gunCost;
     bool _isPlayerInRange = false;
     Player _player;
     private Image _gunSlot;
