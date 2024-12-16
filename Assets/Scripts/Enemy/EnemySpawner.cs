@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] SpawnArea[] spawnAreas; // Áreas de spawn
     bool isTransitioning = false;
     float time; 
-    int baseZombies = 10;
+    int baseZombies = 5;
     int round = 1;
     int zombiesToSpawn;
     int spawnedZombies;
