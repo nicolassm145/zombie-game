@@ -55,6 +55,8 @@ public class Activator : MonoBehaviour
 
     private void Activate()
     {
+        if (_activated) return;
+        
         _activated = true;
         _allActivators.ActivateOne();
         UpdateMessage();
